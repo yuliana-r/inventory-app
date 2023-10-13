@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <%- include('./templates/head'); %>
+</head>
+
+<body>
+  <!-- header goes here? -->
+  <div class="container max-w-full mx-auto sm:px-4">
+    <div class="flex flex-wrap">
+      <%- include('./templates/sidebar'); %>
+      <div class="pl-4 pr-4 sm:w-4/5">
+        <h1><%= title %></h1>
+
+        <form action="" method="POST">
+          <div>
+            <label for="name">Category:</label>
+            <input id="name" class="mt-2" type="text" placeholder="e.g. Festive" name="name" value="<% (typeof category === 'undefined' ? '' : category.name) %>">
+          </div>
+          <button class="mt-4" type="submit">Submit</button>
+        </form>
+
+        <% if (locals.errors) { %>
+        <ul>
+          <% errors.forEach(function(error) { %>
+          <li><%= error.msg %></li>
+          <% }); %>
+        </ul>
+        <% } %>
+      </div>
+    </div>
+  </div>
+  <footer>
+    <%- include('./templates/footer') %>
+  </footer>
+  <!-- <script src="/tw-elements/dist/js/tw-elements.umd.min.js" type="text/javascript"></script> -->
+</body>
+
+</html>

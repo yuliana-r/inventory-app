@@ -1,3 +1,4 @@
+/* eslint-disable consistent-return */
 const asyncHandler = require('express-async-handler');
 const Author = require('../models/author');
 const Recipe = require('../models/recipe');

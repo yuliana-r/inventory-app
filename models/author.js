@@ -5,7 +5,9 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const AuthorSchema = new Schema({
-  name: { type: String, required: true, maxLength: 100 },
+  name: {
+    type: String, required: true, maxLength: 100, unique: true,
+  },
   link_to_blog: { type: String, required: true, maxLength: 150 },
 });
 
