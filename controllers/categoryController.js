@@ -73,12 +73,41 @@ exports.category_create_post = [
 
 // Display Category delete form on GET.
 exports.category_delete_get = asyncHandler(async (req, res, next) => {
-  res.send('NOT IMPLEMENTED: Category delete GET');
+  const [category, allRecipesInCategory] = await Promise.all([
+    Category.findById(req.params.id).exec(),
+    Recipe.find({ category: req.params.id }, 'title description').exec(),
+  ]);
+
+  if (category === null) {
+    const err = new Error('Category not found.');
+    err.status = 404;
+    return next(err);
+  }
+
+  res.render('category_delete', {
+    title: 'Delete category',
+    category,
+    category_recipes: allRecipesInCategory,
+  });
 });
 
 // Handle Category delete on POST.
 exports.category_delete_post = asyncHandler(async (req, res, next) => {
-  res.send('NOT IMPLEMENTED: Category delete POST');
+  const [category, allRecipesInCategory] = await Promise.all([
+    Category.findById(req.params.id).exec(),
+    Recipe.find({ category: req.params.id }, 'title description').exec(),
+  ]);
+
+  if (allRecipesInCategory.length > 0) {
+    res.render('category_delete', {
+      title: 'Delete category',
+      category,
+      category_recipes: allRecipesInCategory,
+    });
+  } else {
+    await Category.findByIdAndRemove(req.body.categoryid);
+    res.redirect('/catalog/categories');
+  }
 });
 
 // Display Category update form on GET.
