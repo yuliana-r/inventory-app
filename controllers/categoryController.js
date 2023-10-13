@@ -1,14 +1,35 @@
+/* eslint-disable consistent-return */
 const asyncHandler = require('express-async-handler');
 const Category = require('../models/category');
+const Recipe = require('../models/recipe');
 
 // Display list of all Category.
 exports.category_list = asyncHandler(async (req, res, next) => {
-  res.send('NOT IMPLEMENTED: Category list');
+  const allCategories = await Category.find().sort({ id: 1 }).exec();
+  res.render('category_list', {
+    title: 'categories',
+    category_list: allCategories,
+  });
 });
 
 // Display detail page for a specific Category.
 exports.category_detail = asyncHandler(async (req, res, next) => {
-  res.send(`NOT IMPLEMENTED: Category detail: ${req.params.id}`);
+  const [category, recipesInCategory] = await Promise.all([
+    Category.findById(req.params.id).exec(),
+    Recipe.find({ category: req.params.id }, 'title description').exec(),
+  ]);
+
+  if (category === null) {
+    const err = new Error('Category not found');
+    err.status = 404;
+    return next(err);
+  }
+
+  res.render('category_detail', {
+    title: 'category detail',
+    category,
+    category_recipes: recipesInCategory,
+  });
 });
 
 // Display Category create form on GET.

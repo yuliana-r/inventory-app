@@ -1,3 +1,4 @@
+/* eslint-disable consistent-return */
 const asyncHandler = require('express-async-handler');
 const Recipe = require('../models/recipe');
 const Author = require('../models/author');
@@ -35,7 +36,21 @@ exports.recipe_list = asyncHandler(async (req, res, next) => {
 
 // Display detail page for a specific recipe.
 exports.recipe_detail = asyncHandler(async (req, res, next) => {
-  res.send(`NOT IMPLEMENTED: Recipe detail: ${req.params.id}`);
+  const recipe = await Recipe.findById(req.params.id)
+    .populate('author')
+    .populate('category')
+    .exec();
+
+  if (recipe === null) {
+    const err = new Error('Recipe not found.');
+    err.status = 404;
+    return next(err);
+  }
+
+  res.render('recipe_detail', {
+    title: recipe.title,
+    recipe,
+  });
 });
 
 // Display recipe create form on GET.
