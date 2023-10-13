@@ -6,9 +6,11 @@ const { Schema } = mongoose;
 
 const AuthorSchema = new Schema({
   name: {
-    type: String, required: true, maxLength: 100, unique: true,
+    type: String, required: true, maxLength: 100,
   },
-  link_to_blog: { type: String, required: true, maxLength: 150 },
+  link_to_blog: {
+    type: String, required: true, maxLength: 150, unique: true,
+  },
 });
 
 AuthorSchema.virtual('url').get(function () {

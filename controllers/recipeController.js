@@ -127,8 +127,13 @@ exports.recipe_create_post = [
         errors: errors.array(),
       });
     } else {
-      await recipe.save();
-      res.redirect(recipe.url);
+      const recipeExists = await Recipe.findOne({ link_to_recipe: req.body.link_to_recipe }).exec();
+      if (recipeExists) {
+        res.redirect(recipeExists.url);
+      } else {
+        await recipe.save();
+        res.redirect(recipe.url);
+      }
     }
   }),
 ];

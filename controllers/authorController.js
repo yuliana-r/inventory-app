@@ -63,8 +63,13 @@ exports.author_create_post = [
         errors: errors.array(),
       });
     } else {
-      await author.save();
-      res.redirect(author.url);
+      const authorExists = await Author.findOne({ link_to_blog: req.body.link_to_blog }).exec();
+      if (authorExists) {
+        res.redirect(authorExists.url);
+      } else {
+        await author.save();
+        res.redirect(author.url);
+      }
     }
   }),
 ];
@@ -108,10 +113,45 @@ exports.author_delete_post = asyncHandler(async (req, res, next) => {
 
 // Display Author update form on GET.
 exports.author_update_get = asyncHandler(async (req, res, next) => {
-  res.send('NOT IMPLEMENTED: Author update GET');
+  const author = await Author.findById(req.params.id).exec();
+
+  if (author === null) {
+    const err = new Error('Author not found');
+    err.status = 404;
+    return next(err);
+  }
+
+  res.render('author_form', { title: 'Update Author', author });
 });
 
 // Handle Author update on POST.
-exports.author_update_post = asyncHandler(async (req, res, next) => {
-  res.send('NOT IMPLEMENTED: Author update POST');
-});
+exports.author_update_post = [
+  body('name')
+    .trim()
+    .isLength({ min: 1 })
+    .withMessage('Name must be specified.'),
+  body('link_to_blog')
+    .isLength({ min: 3 })
+    .withMessage('Link to blog must be specified.'),
+
+  asyncHandler(async (req, res, next) => {
+    const errors = validationResult(req);
+
+    const author = new Author({
+      name: req.body.name,
+      link_to_blog: req.body.link_to_blog,
+      _id: req.params.id,
+    });
+
+    if (!errors.isEmpty()) {
+      res.render('author_form', {
+        title: 'Update author',
+        author,
+        errors: errors.array(),
+      });
+    } else {
+      await Author.findByIdAndUpdate(req.params.id, author);
+      res.redirect(author.url);
+    }
+  }),
+];
