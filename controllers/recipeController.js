@@ -134,12 +134,24 @@ exports.recipe_create_post = [
 
 // Display recipe delete form on GET.
 exports.recipe_delete_get = asyncHandler(async (req, res, next) => {
-  res.send('NOT IMPLEMENTED: Recipe delete GET');
+  const recipe = await Recipe.findById(req.params.id).exec();
+
+  if (recipe === null) {
+    const err = new Error('Recipe not found!');
+    err.status = 404;
+    return next(err);
+  }
+
+  res.render('recipe_delete', {
+    title: 'Delete recipe',
+    recipe,
+  });
 });
 
 // Handle recipe delete on POST.
 exports.recipe_delete_post = asyncHandler(async (req, res, next) => {
-  res.send('NOT IMPLEMENTED: Recipe delete POST');
+  await Recipe.findByIdAndRemove(req.body.recipeid).exec();
+  res.redirect('/catalog/recipes');
 });
 
 // Display recipe update form on GET.

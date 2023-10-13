@@ -25,11 +25,12 @@
           <p>This author has no recipes.</p>
           <% } %>
         </dl>
+        <p>
+          <a href="<%= author.url %>/delete">Delete author</a>
+        </p>
       </div>
     </div>
-    <p>
-      <a href="<%= author.url %>/delete">Delete author</a>
-    </p>
+
   </div>
   <footer>
     <%- include('./templates/footer') %>
