@@ -1,5 +1,6 @@
 /* eslint-disable consistent-return */
 const asyncHandler = require('express-async-handler');
+const { body, validationResult } = require('express-validator');
 const Recipe = require('../models/recipe');
 const Author = require('../models/author');
 const Category = require('../models/category');

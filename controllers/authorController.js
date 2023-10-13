@@ -1,5 +1,6 @@
 /* eslint-disable consistent-return */
 const asyncHandler = require('express-async-handler');
+const { body, validationResult } = require('express-validator');
 const Author = require('../models/author');
 const Recipe = require('../models/recipe');
 
@@ -34,13 +35,39 @@ exports.author_detail = asyncHandler(async (req, res, next) => {
 
 // Display Author create form on GET.
 exports.author_create_get = asyncHandler(async (req, res, next) => {
-  res.send('NOT IMPLEMENTED: Author create GET');
+  res.render('author_form', { title: 'New author' });
 });
 
 // Handle Author create on POST.
-exports.author_create_post = asyncHandler(async (req, res, next) => {
-  res.send('NOT IMPLEMENTED: Author create POST');
-});
+exports.author_create_post = [
+  body('name')
+    .trim()
+    .isLength({ min: 1 })
+    .withMessage('Name must be specified.'),
+  body('link_to_blog')
+    .isLength({ min: 3 })
+    .withMessage('Link to blog must be specified.'),
+
+  asyncHandler(async (req, res, next) => {
+    const errors = validationResult(req);
+
+    const author = new Author({
+      name: req.body.name,
+      link_to_blog: req.body.link_to_blog,
+    });
+
+    if (!errors.isEmpty()) {
+      res.render('author_form', {
+        title: 'New author',
+        author,
+        errors: errors.array(),
+      });
+    } else {
+      await author.save();
+      res.redirect(author.url);
+    }
+  }),
+];
 
 // Display Author delete form on GET.
 exports.author_delete_get = asyncHandler(async (req, res, next) => {
