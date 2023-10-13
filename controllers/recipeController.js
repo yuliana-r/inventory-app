@@ -1,13 +1,36 @@
 const asyncHandler = require('express-async-handler');
 const Recipe = require('../models/recipe');
+const Author = require('../models/author');
+const Category = require('../models/category');
 
 exports.index = asyncHandler(async (req, res, next) => {
-  res.send('NOT IMPLEMENTED: Site Home Page');
+  const [
+    numRecipes,
+    numAuthors,
+    numCategories,
+  ] = await Promise.all([
+    Recipe.countDocuments({}).exec(),
+    Author.countDocuments({}).exec(),
+    Category.countDocuments({}).exec(),
+  ]);
+
+  res.render('index', {
+    title: 'home',
+    recipe_count: numRecipes,
+    author_count: numAuthors,
+    category_count: numCategories,
+  });
 });
 
 // Display list of all recipes
 exports.recipe_list = asyncHandler(async (req, res, next) => {
-  res.send('NOT IMPLEMENTED: Recipe list');
+  const allRecipes = await Recipe.find({}, 'title author category')
+    .sort({ title: 1 })
+    .populate('author')
+    .populate('category')
+    .exec();
+
+  res.render('recipe_list', { title: 'recipes', recipe_list: allRecipes });
 });
 
 // Display detail page for a specific recipe.

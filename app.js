@@ -8,11 +8,12 @@ const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 
 const indexRouter = require('./routes/index');
-const usersRouter = require('./routes/users');
+// const usersRouter = require('./routes/users');
+const catalogRouter = require('./routes/catalog');
 
 const app = express();
-const mongoDB = `${process.env.MONGODB_URI}`;
 dotenv.config();
+const mongoDB = `${process.env.MONGODB_URI}`;
 
 mongoose.set('strictQuery', false);
 
@@ -32,7 +33,8 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/catalog', catalogRouter);
+// app.use('/users', usersRouter);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
