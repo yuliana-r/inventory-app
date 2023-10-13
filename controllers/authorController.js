@@ -71,12 +71,39 @@ exports.author_create_post = [
 
 // Display Author delete form on GET.
 exports.author_delete_get = asyncHandler(async (req, res, next) => {
-  res.send('NOT IMPLEMENTED: Author delete GET');
+  const [author, allRecipesByAuthor] = await Promise.all([
+    Author.findById(req.params.id).exec(),
+    Recipe.find({ author: req.params.id }, 'title description').exec(),
+  ]);
+
+  if (author === null) {
+    res.redirect('/catalog/authors');
+  }
+
+  res.render('author_delete', {
+    title: 'Delete author',
+    author,
+    author_recipes: allRecipesByAuthor,
+  });
 });
 
 // Handle Author delete on POST.
 exports.author_delete_post = asyncHandler(async (req, res, next) => {
-  res.send('NOT IMPLEMENTED: Author delete POST');
+  const [author, allRecipesByAuthor] = await Promise.all([
+    Author.findById(req.params.id).exec(),
+    Recipe.find({ author: req.params.id }, 'title description').exec(),
+  ]);
+
+  if (allRecipesByAuthor.length > 0) {
+    res.render('author_delete', {
+      title: 'Delete author',
+      author,
+      author_recipes: allRecipesByAuthor,
+    });
+  } else {
+    await Author.findByIdAndRemove(req.body.authorid);
+    res.redirect('/catalog/authors');
+  }
 });
 
 // Display Author update form on GET.

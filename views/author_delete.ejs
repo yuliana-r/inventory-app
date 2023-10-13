@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <%- include('./templates/head'); %>
+</head>
+
+<body>
+  <!-- header goes here? -->
+  <div class="container max-w-full mx-auto sm:px-4">
+    <div class="flex flex-wrap">
+      <%- include('./templates/sidebar'); %>
+      <div class="pl-4 pr-4 sm:w-4/5">
+        <h1><%= title %>: <%= author.name %></h1>
+
+        <% if (author_recipes.length) { %>
+        <p><strong>Delete the following recipes before attempting to delete this author.</strong></p>
+        <div style='margin-left:20px; margin-top:20px'>
+          <h4>Recipes</h4>
+          <dl>
+            <% author_recipes.forEach(function(recipe) { %>
+            <dt><a href=<%= recipe.url %>><%= recipe.title %></a></dt>
+            <dd><%= recipe.description %></dd>
+            <% }); %>
+          </dl>
+        </div>
+        <% } else { %>
+        <p>Do you really want to delete this author?</p>
+        <form method='POST' action=''>
+          <div>
+            <input id='authorid' type='hidden' name='authorid' required='true' value=<%= author._id %>>
+          </div>
+          <button type='submit'>Delete</button>
+        </form>
+        <% } %>
+      </div>
+    </div>
+  </div>
+  <footer>
+    <%- include('./templates/footer') %>
+  </footer>
+  <!-- <script src="/tw-elements/dist/js/tw-elements.umd.min.js" type="text/javascript"></script> -->
+</body>
+
+</html>

@@ -1,3 +1,5 @@
+/* eslint-disable no-underscore-dangle */
+/* eslint-disable no-restricted-syntax */
 /* eslint-disable consistent-return */
 const asyncHandler = require('express-async-handler');
 const { body, validationResult } = require('express-validator');
@@ -56,13 +58,79 @@ exports.recipe_detail = asyncHandler(async (req, res, next) => {
 
 // Display recipe create form on GET.
 exports.recipe_create_get = asyncHandler(async (req, res, next) => {
-  res.send('NOT IMPLEMENTED: Recipe create GET');
+  const [allAuthors, allCategories] = await Promise.all([
+    Author.find().exec(),
+    Category.find().exec(),
+  ]);
+
+  res.render('recipe_form', {
+    title: 'New recipe',
+    authors: allAuthors,
+    categories: allCategories,
+  });
 });
 
 // Handle recipe create on POST.
-exports.recipe_create_post = asyncHandler(async (req, res, next) => {
-  res.send('NOT IMPLEMENTED: Recipe create POST');
-});
+exports.recipe_create_post = [
+  (req, res, next) => {
+    if (!(req.body.category instanceof Array)) {
+      if (typeof req.body.category === 'undefined') req.body.category = [];
+      else req.body.category = new Array(req.body.category);
+    }
+    next();
+  },
+
+  body('title', 'Title must not be empty')
+    .trim()
+    .isLength({ min: 1 })
+    .escape(),
+  body('author', 'Author must not be empty')
+    .trim()
+    .isLength({ min: 1 })
+    .escape(),
+  body('description', 'Description must not be empty')
+    .trim()
+    .isLength({ min: 1 })
+    .escape(),
+  body('category.*').escape(),
+  body('link_to_recipe', 'Link to recipe must not be empty').trim().isLength({ min: 1 }),
+
+  asyncHandler(async (req, res, next) => {
+    const errors = validationResult(req);
+
+    const recipe = new Recipe({
+      title: req.body.title,
+      author: req.body.author,
+      description: req.body.description,
+      category: req.body.category,
+      link_to_recipe: req.body.link_to_recipe,
+    });
+
+    if (!errors.isEmpty()) {
+      const [allAuthors, allCategories] = await Promise.all([
+        Author.find().exec(),
+        Category.find().exec(),
+      ]);
+
+      for (const category of allCategories) {
+        if (recipe.category.includes(category._id)) {
+          category.checked = 'true';
+        }
+      }
+
+      res.render('recipe_form', {
+        title: 'New recipe',
+        authors: allAuthors,
+        categories: allCategories,
+        recipe,
+        errors: errors.array(),
+      });
+    } else {
+      await recipe.save();
+      res.redirect(recipe.url);
+    }
+  }),
+];
 
 // Display recipe delete form on GET.
 exports.recipe_delete_get = asyncHandler(async (req, res, next) => {

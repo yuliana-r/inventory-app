@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <%- include('./templates/head'); %>
+</head>
+
+<body>
+  <!-- header goes here? -->
+  <div class="container max-w-full mx-auto sm:px-4">
+    <div class="flex flex-wrap">
+      <%- include('./templates/sidebar'); %>
+      <div class="pl-4 pr-4 sm:w-4/5">
+        <h1><%= title %></h1>
+
+
+        <form method='POST' action=''>
+          <div>
+            <label for='title'>Title:</label>
+            <input id='title' class='mt-2' type='text' placeholder='Name of the recipe' name='title' required='true' value=<%= (undefined === locals.recipe ? '' : locals.recipe.title) %>>
+          </div>
+          <div>
+            <label for='author' class="mt-3">Author:</label>
+            <select id='author' class='mt-2' type='select' placeholder='Select author' name='author' required='true'>
+              <% locals.authors.sort(function(a, b) { let textA = a.name.toUpperCase(); let textB = b.name.toUpperCase(); return (textA < textB) ? -1 : (textA > textB) ? 1 : 0; }); %>
+              <% for (let author of authors) { %>
+              <% if (locals.recipe) { %>
+              <option value=<%= author._id %> <%= (author._id.toString() === recipe.author._id.toString() ? 'selected' : '') %>><%= author.name %></option>
+              <% } else { %>
+              <option value=<%= author._id %>><%= author.name %></option>
+              <% } %>
+              <% } %>
+            </select>
+          </div>
+          <div>
+            <label for='description' class="mt-3">Description:</label>
+            <textarea id='description' class='mt-2' type='textarea' placeholder='Description' name='description' required='true'><%= (undefined === locals.recipe ? '' : locals.recipe.description) %></textarea>
+          </div>
+          <div class='form-group'>
+            <label for='link_to_recipe' class="mt-3">Link to recipe:</label>
+            <input id='link_to_recipe' class='mt-2' type='text' placeholder='Link to  recipe' required name='link_to_recipe' value=<%= (undefined === locals.book ? '' : locals.book.link_to_recipe) %>>
+          </div>
+          <div>
+            <label class="mt-3">Category:</label>
+            <div>
+              <% for (let category of categories) { %>
+              <div style='display: inline; padding-right:10px;'>
+                <input class='mt-2' type='checkbox' name='category' id=<%= category._id %> value=<%= category._id %> <%= category.checked ? 'checked' : '' %>>
+                <label for=<%= category._id %> class="ml-2"><%= category.name %></label>
+              </div>
+              <% } %>
+            </div>
+          </div>
+          <button class='mt-4' type='submit'>Submit</button>
+        </form>
+
+
+        <% if (locals.errors) { %>
+        <ul>
+          <% for (let error of errors) { %>
+          <li><%= error.msg %></li>
+          <% } %>
+        </ul>
+        <% } %>
+      </div>
+    </div>
+  </div>
+  <footer>
+    <%- include('./templates/footer') %>
+  </footer>
+  <!-- <script src="/tw-elements/dist/js/tw-elements.umd.min.js" type="text/javascript"></script> -->
+</body>
+
+</html>
