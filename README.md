@@ -3,7 +3,7 @@
 
 ## Preview
 
-<!-- [![Inventory App](./public/images/demo.png)](https://inventory-app-yuliana-r.netlify.app/) -->
+[![Inventory App](./public/images/demo.png)](https://github.com/yuliana-r/inventory-app)
 
 ## Media & assets credits:
 
