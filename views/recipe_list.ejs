@@ -8,26 +8,23 @@
 <body>
   <%- include('./templates/header'); %>
   <main>
-    <div>
-      <%= title %>
-      <button><a href="/catalog/recipe/create"><i class="fa-solid fa-file-circle-plus"></i> Add Recipe</a></button>
+    <p class="page-title"><%= title %></p>
+    <button class="add-button"><a href="/catalog/recipe/create"><i class="fa-solid fa-file-circle-plus"></i> add recipe</a></button>
 
-      <ul>
-        <% if (recipe_list.length > 0) { %>
-        <% recipe_list.forEach(function(recipe) { %>
-        <li>
-          <a href="<%= recipe.url %>"><%= recipe.title %></a> (<%= recipe.author.name %>)
-          <p> Category:
-            <% recipe.category.forEach(function(val, index) { %>
-            <a href="<%= val.url %>"><%= val.name %></a><% if (index < recipe.category.length - 1) { %>,<% } %>
-            <% }); %>
-          </p>
-        </li>
+    <div class="recipes-container">
+      <% if (recipe_list.length > 0) { %>
+      <% recipe_list.forEach(function(recipe) { %>
+      <div class="recipe-item">
+        <i class="fa-solid fa-utensils"></i> <a href="<%= recipe.url %>"><%= recipe.title %></a> | <i class="fa-solid fa-user"></i><a href="<%= recipe.author.url %>"><%= recipe.author.name %></a> |
+        great for
+        <% recipe.category.forEach(function(val, index) { %>
+        <a href="<%= val.url %>"><%= val.name %></a>
         <% }); %>
-        <% } else { %>
-        <li>There are no recipes.</li>
-        <% } %>
-      </ul>
+      </div>
+      <% }); %>
+      <% } else { %>
+      <p>There are no recipes.</p>
+      <% } %>
     </div>
   </main>
 
