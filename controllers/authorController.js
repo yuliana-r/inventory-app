@@ -17,7 +17,7 @@ exports.author_list = asyncHandler(async (req, res, next) => {
 exports.author_detail = asyncHandler(async (req, res, next) => {
   const [author, allRecipesByAuthor] = await Promise.all([
     Author.findById(req.params.id).exec(),
-    Recipe.find({ author: req.params.id }, 'title summary').exec(),
+    Recipe.find({ author: req.params.id }, 'title description').exec(),
   ]);
 
   if (author === null) {

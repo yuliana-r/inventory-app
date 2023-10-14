@@ -8,27 +8,31 @@
 <body>
   <%- include('./templates/header'); %>
   <main>
-    <div>
-      <h1><%= title %></h1>
-      <a href="<%= author.link_to_blog %>" target="_blank">Link to blog</a></p>
 
-      <p>Recipes:</p>
-      <dl>
-        <% if (author_recipes.length > 0) { %>
-        <% author_recipes.forEach(function(recipe) { %>
-        <dt><a href="<%= recipe.url %>"><%= recipe.title %></a></dt>
-        <dd><%= recipe.description %></dd>
-        <% }); %>
-        <% } else { %>
-        <p>This author has no recipes.</p>
-        <% } %>
-      </dl>
-      <p>
-        <a href="<%= author.url %>/delete">Delete author</a>
-      </p>
-      <p>
-        <a href="<%= author.url %>/update">Update author</a>
-      </p>
+    <div class="author-detail">
+      <p class="page-title"><%= title %></p>
+      <a href="<%= author.link_to_blog %>" target="_blank" class="external-link">LINK TO BLOG</a></p>
+      <% if (author_recipes.length > 0) { %>
+      <% author_recipes.forEach(function(recipe) { %>
+      <div class="recipe-item">
+        <i class="fa-solid fa-utensils"></i>
+        <a href="<%= recipe.url %>"><%= recipe.title %></a>
+      </div>
+      <% }); %>
+      <% } else { %>
+      <p>This author has no recipes.</p>
+      <% } %>
+
+      <div class="buttons-container">
+        <button class="update-button">
+          <i class="fa-solid fa-pen"></i>
+          <a href="<%= author.url %>/update">update author</a>
+        </button>
+        <button class="delete-button">
+          <i class="fa-solid fa-trash-can"></i>
+          <a href="<%= author.url %>/delete">delete author</a>
+        </button>
+      </div>
     </div>
   </main>
 
