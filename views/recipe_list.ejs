@@ -16,7 +16,7 @@
       <% recipe_list.forEach(function(recipe) { %>
       <div class="recipe-item">
         <i class="fa-solid fa-utensils"></i> <a href="<%= recipe.url %>"><%= recipe.title %></a> | <i class="fa-solid fa-user"></i><a href="<%= recipe.author.url %>"><%= recipe.author.name %></a> |
-        great for
+        <i class="fa-solid fa-hourglass-half"></i>
         <% recipe.category.forEach(function(val, index) { %>
         <a href="<%= val.url %>"><%= val.name %></a>
         <% }); %>

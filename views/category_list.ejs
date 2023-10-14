@@ -8,22 +8,21 @@
 <body>
   <%- include('./templates/header'); %>
   <main>
-    <div>
-      <%= title %>
-      <button><a href="/catalog/category/create"><i class="fa-solid fa-folder-plus"></i> Add Category</a></button>
+    <p class="page-title"><%= title %></p>
+    <button class="add-button"><a href="/catalog/category/create"><i class="fa-solid fa-folder-plus"></i> add Category</a></button>
 
-      <ul>
-        <% if (category_list.length > 0) { %>
-        <% category_list.forEach(function(category) { %>
-        <li>
-          <a href="<%= category.url %>"><%= category.name %></a>
-        </li>
-        <% }); %>
-        <% } else { %>
-        <li>There are no categories.</li>
-        <% } %>
-      </ul>
+    <div class="categories-container">
+      <% if (category_list.length > 0) { %>
+      <% category_list.forEach(function(category) { %>
+      <div class="category-item">
+        <i class="fa-solid fa-hourglass-half"></i>
+        <a href="<%= category.url %>"><%= category.name %></a>
+      </div>
+      <% }); %>
     </div>
+    <% } else { %>
+    <p>There are no categories.</p>
+    <% } %>
   </main>
 
   <footer>

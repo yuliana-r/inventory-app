@@ -166,7 +166,8 @@ main {
 }
 
 .recipes-container,
-.authors-container {
+.authors-container,
+.categories-container {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -175,7 +176,8 @@ main {
 }
 
 .recipe-item,
-.author-item {
+.author-item,
+.category-item {
   display: flex;
   gap: 0.5em;
 }
@@ -186,6 +188,10 @@ main {
 
 .fa-user {
   color: #e07c50;
+}
+
+.fa-hourglass-half {
+  color: #a05562;
 }
 
 a {
