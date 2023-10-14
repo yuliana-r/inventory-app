@@ -7,23 +7,20 @@
 
 <body>
   <%- include('./templates/header'); %>
-  <div>
+  <main>
     <div>
-      <div>
-        <p><%= title %></p>
-        <p>The catalog has the following counts:</p>
-        <ul>
-          <li><strong>Recipes:</strong> <%= recipe_count %></li>
-          <li><strong>Authors:</strong> <%= author_count %></li>
-          <li><strong>Categories:</strong> <%= category_count %></li>
-        </ul>
-      </div>
+      <p><%= title %></p>
+      <p>The catalog has the following counts:</p>
+      <ul>
+        <li><strong>Recipes:</strong> <%= recipe_count %></li>
+        <li><strong>Authors:</strong> <%= author_count %></li>
+        <li><strong>Categories:</strong> <%= category_count %></li>
+      </ul>
     </div>
-  </div>
+  </main>
   <footer>
     <%- include('./templates/footer') %>
   </footer>
-  <!-- <script src="/tw-elements/dist/js/tw-elements.umd.min.js" type="text/javascript"></script> -->
 </body>
 
 </html>

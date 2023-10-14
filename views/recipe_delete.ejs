@@ -7,25 +7,23 @@
 
 <body>
   <%- include('./templates/header'); %>
-  <div>
+  <main>
     <div>
-      <div>
-        <h1><%= title %></h1>
+      <h1><%= title %></h1>
 
-        <p>Do you really want to delete this recipe?</p>
-        <form method='POST' action=''>
-          <div>
-            <input id='recipeid' type='hidden' name='recipeid' required='true' value=<%= recipe._id %>>
-          </div>
-          <button type='submit'>Delete</button>
-        </form>
-      </div>
+      <p>Do you really want to delete this recipe?</p>
+      <form method='POST' action=''>
+        <div>
+          <input id='recipeid' type='hidden' name='recipeid' required='true' value=<%= recipe._id %>>
+        </div>
+        <button type='submit'>Delete</button>
+      </form>
     </div>
-  </div>
+  </main>
+
   <footer>
     <%- include('./templates/footer') %>
   </footer>
-  <!-- <script src="/tw-elements/dist/js/tw-elements.umd.min.js" type="text/javascript"></script> -->
 </body>
 
 </html>

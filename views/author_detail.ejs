@@ -7,37 +7,34 @@
 
 <body>
   <%- include('./templates/header'); %>
-  <div>
+  <main>
     <div>
-      <div>
-        <h1><%= title %></h1>
-        <a href="<%= author.link_to_blog %>" target="_blank">Link to blog</a></p>
+      <h1><%= title %></h1>
+      <a href="<%= author.link_to_blog %>" target="_blank">Link to blog</a></p>
 
-        <p>Recipes:</p>
-        <dl>
-          <% if (author_recipes.length > 0) { %>
-          <% author_recipes.forEach(function(recipe) { %>
-          <dt><a href="<%= recipe.url %>"><%= recipe.title %></a></dt>
-          <dd><%= recipe.description %></dd>
-          <% }); %>
-          <% } else { %>
-          <p>This author has no recipes.</p>
-          <% } %>
-        </dl>
-        <p>
-          <a href="<%= author.url %>/delete">Delete author</a>
-        </p>
-        <p>
-          <a href="<%= author.url %>/update">Update author</a>
-        </p>
-      </div>
+      <p>Recipes:</p>
+      <dl>
+        <% if (author_recipes.length > 0) { %>
+        <% author_recipes.forEach(function(recipe) { %>
+        <dt><a href="<%= recipe.url %>"><%= recipe.title %></a></dt>
+        <dd><%= recipe.description %></dd>
+        <% }); %>
+        <% } else { %>
+        <p>This author has no recipes.</p>
+        <% } %>
+      </dl>
+      <p>
+        <a href="<%= author.url %>/delete">Delete author</a>
+      </p>
+      <p>
+        <a href="<%= author.url %>/update">Update author</a>
+      </p>
     </div>
+  </main>
 
-  </div>
   <footer>
     <%- include('./templates/footer') %>
   </footer>
-  <!-- <script src="/tw-elements/dist/js/tw-elements.umd.min.js" type="text/javascript"></script> -->
 </body>
 
 </html>
