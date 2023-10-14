@@ -328,6 +328,13 @@ textarea {
   vertical-align: middle;
 }
 
+.warning {
+  margin: 10px;
+  color: #de666b;
+  font-weight: 600;
+  font-size: 1.15em;
+}
+
 /* Footer */
 footer {
   background-color: var(--primary-dark);

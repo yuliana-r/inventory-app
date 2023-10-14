@@ -8,29 +8,26 @@
 <body>
   <%- include('./templates/header'); %>
   <main>
-    <div>
-      <h1><%= title %>: <%= category.name %></h1>
-      <% if (category_recipes.length) { %>
-      <p><strong>Delete the following recipes before attempting to delete this category.</strong></p>
-      <div style='margin-left:20px; margin-top:20px'>
-        <h4>Recipes</h4>
-        <dl>
-          <% category_recipes.forEach(function(recipe) { %>
-          <dt><a href=<%= recipe.url %>><%= recipe.title %></a></dt>
-          <dd><%= recipe.description %></dd>
-          <% }); %>
-        </dl>
+    <p class="page-title"><%= title %>: <%= category.name %></p>
+    <% if (category_recipes.length) { %>
+    <p class="warning">Delete the following recipes before attempting to delete this category:</p>
+    <div class="recipes-container">
+      <% category_recipes.forEach(function(recipe) { %>
+      <div class="recipe-item">
+        <i class="fa-solid fa-utensils"></i>
+        <a href=<%= recipe.url %>><%= recipe.title %></a>
       </div>
-      <% } else { %>
-      <p>Do you really want to delete this category?</p>
-      <form method='POST' action=''>
-        <div>
-          <input id='categoryid' type='hidden' name='categoryid' required='true' value=<%= category._id %>>
-        </div>
-        <button type='submit'>Delete</button>
-      </form>
-      <% } %>
+      <% }); %>
     </div>
+    <% } else { %>
+    <p>Do you really want to delete this category?</p>
+    <form method='POST' action=''>
+      <div>
+        <input id='categoryid' type='hidden' name='categoryid' required='true' value=<%= category._id %>>
+      </div>
+      <button type='submit' class="delete-button"><i class="fa-solid fa-trash-can"></i> delete</button>
+    </form>
+    <% } %>
   </main>
 
   <footer>

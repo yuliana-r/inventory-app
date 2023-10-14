@@ -8,30 +8,27 @@
 <body>
   <%- include('./templates/header'); %>
   <main>
-    <div>
-      <h1><%= title %>: <%= author.name %></h1>
+    <p class="page-title"><%= title %>: <%= author.name %></p>
 
-      <% if (author_recipes.length) { %>
-      <p><strong>Delete the following recipes before attempting to delete this author.</strong></p>
-      <div style='margin-left:20px; margin-top:20px'>
-        <h4>Recipes</h4>
-        <dl>
-          <% author_recipes.forEach(function(recipe) { %>
-          <dt><a href=<%= recipe.url %>><%= recipe.title %></a></dt>
-          <dd><%= recipe.description %></dd>
-          <% }); %>
-        </dl>
+    <% if (author_recipes.length) { %>
+    <p class="warning">Delete the following recipes before attempting to delete this author.</p>
+    <div class="recipes-container">
+      <% author_recipes.forEach(function(recipe) { %>
+      <div class="recipe-item">
+        <i class="fa-solid fa-utensils"></i>
+        <a href=<%= recipe.url %>><%= recipe.title %></a>
       </div>
-      <% } else { %>
-      <p>Do you really want to delete this author?</p>
-      <form method='POST' action=''>
-        <div>
-          <input id='authorid' type='hidden' name='authorid' required='true' value=<%= author._id %>>
-        </div>
-        <button type='submit'>Delete</button>
-      </form>
-      <% } %>
+      <% }); %>
     </div>
+    <% } else { %>
+    <p>Do you really want to delete this author?</p>
+    <form method='POST' action=''>
+      <div>
+        <input id='authorid' type='hidden' name='authorid' required='true' value=<%= author._id %>>
+      </div>
+      <button type='submit' class="delete-button"><i class="fa-solid fa-trash-can"></i> delete</button>
+    </form>
+    <% } %>
   </main>
   <footer>
     <%- include('./templates/footer') %>
