@@ -115,6 +115,7 @@ main {
   color: var(--primary-dark);
   font-size: 2em;
   text-align: center;
+  margin: 10px;
 }
 
 .about {
@@ -142,11 +143,13 @@ main {
   font-weight: 700;
 }
 
-.add-button {
+.add-button,
+.update-button,
+.delete-button {
   padding: 0.5em 1.25em;
-  background-color: var(--primary-green);
   font-family: 'Montserrat', sans-serif;
   border: 1px solid var(--primary-dark);
+  color: var(--primary-light);
   border-radius: 5px;
   font-size: 15px;
   font-weight: 500;
@@ -154,15 +157,31 @@ main {
   margin: 1.5em;
 }
 
-.add-button>a {
+.add-button>a,
+.update-button>a,
+.delete-button>a {
   text-decoration: none;
   color: var(--primary-light);
 }
 
-.add-button:hover {
+.add-button:hover,
+.update-button:hover,
+.delete-button:hover {
   transform: scale(1.05);
   filter: saturate(1.25);
   cursor: grab;
+}
+
+.add-button {
+  background-color: var(--primary-green);
+}
+
+.update-button {
+  background-color: #9b7daf;
+}
+
+.delete-button {
+  background-color: #de666b;
 }
 
 .recipes-container,
@@ -179,7 +198,15 @@ main {
 .author-item,
 .category-item {
   display: flex;
+  justify-content: center;
+  align-items: center;
   gap: 0.5em;
+  flex-wrap: wrap;
+  border-bottom: 1px solid var(--primary-green);
+  border-left: 2px solid var(--primary-green);
+  padding: 0.5em;
+  margin: 0.25em;
+  width: fit-content;
 }
 
 .fa-utensils {
@@ -201,6 +228,37 @@ a {
 a:hover {
   opacity: 0.9;
   transform: scale(1.05);
+}
+
+.recipe-detail,
+.author-detail,
+.category-detail {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 75%;
+  gap: 2em;
+}
+
+.recipe-header {
+  display: flex;
+  justify-content: space-center;
+  align-items: center;
+  gap: 1em;
+}
+
+.description {
+  font-size: 1.25em;
+  font-weight: 300;
+  user-select: none;
+}
+
+.method-link {
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-decoration: none;
+  border-bottom: 4px double var(--primary-dark);
 }
 
 /* Footer */

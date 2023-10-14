@@ -8,24 +8,36 @@
 <body>
   <%- include('./templates/header'); %>
   <main>
-    <div>
-      <p><%= title %></p>
-      <p><strong>Author:</strong><a href="<%= recipe.author.url %>"><%= recipe.author.name %></a></p>
-      <p><strong>Description:</strong> <%= recipe.description %></p>
-      <p><strong>Category:</strong>
-        <% recipe.category.forEach(function(val, index) { %>
-        <a href="<%= val.url %>"><%= val.name %></a><% if (index < recipe.category.length - 1) { %>,<% } %>
-        <% }); %>
-      </p>
-      <a href="<%= recipe.link_to_recipe %>" target="_blank">Click for ingredients and method</a></p>
+    <p class="page-title"><%= title %></p>
+    <div class="recipe-detail">
+      <div class="recipe-header">
+        <div class="author-item">
+          <i class="fa-solid fa-user"></i><a href="<%= recipe.author.url %>"><%= recipe.author.name %></a>
+        </div>
+        <div class="category-item">
+          <i class="fa-solid fa-hourglass-half"></i>
+          <% recipe.category.forEach(function(val, index) { %>
+          <a href="<%= val.url %>"><%= val.name %></a>
+          <% }); %>
+        </div>
+      </div>
 
-      <p>
-        <a href="<%= recipe.url %>/delete">Delete recipe</a>
-      </p>
-      <p>
-        <a href="<%= recipe.url %>/update">Update recipe</a>
-      </p>
+
+      <p class="description"><%= recipe.description %></p>
+      <a href="<%= recipe.link_to_recipe %>" target="_blank" class="method-link">INGREDIENTS AND METHOD</a></p>
+
+      <div class="buttons-container">
+        <button class="update-button">
+          <i class="fa-solid fa-pen"></i>
+          <a href="<%= recipe.url %>/update">update recipe</a>
+        </button>
+        <button class="delete-button">
+          <i class="fa-solid fa-trash-can"></i>
+          <a href="<%= recipe.url %>/delete">delete recipe</a>
+        </button>
+      </div>
     </div>
+
   </main>
 
   <footer>
