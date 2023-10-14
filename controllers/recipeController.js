@@ -206,16 +206,13 @@ exports.recipe_update_post = [
 
   body('title', 'Title must not be empty')
     .trim()
-    .isLength({ min: 1 })
-    .escape(),
+    .isLength({ min: 1 }),
   body('author', 'Author must not be empty')
     .trim()
-    .isLength({ min: 1 })
-    .escape(),
+    .isLength({ min: 1 }),
   body('description', 'Description must not be empty')
     .trim()
-    .isLength({ min: 1 })
-    .escape(),
+    .isLength({ min: 1 }),
   body('category.*').escape(),
   body('link_to_recipe', 'Link to recipe must not be empty').trim().isLength({ min: 1 }),
 

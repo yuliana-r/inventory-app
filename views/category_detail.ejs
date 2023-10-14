@@ -8,25 +8,31 @@
 <body>
   <%- include('./templates/header'); %>
   <main>
-    <div>
-      <p><%= category.name %></p>
-      <p>Recipes:</p>
-      <dl>
-        <% if (category_recipes.length > 0) { %>
-        <% category_recipes.forEach(function(recipe) { %>
-        <dt><a href="<%= recipe.url %>"><%= recipe.title %></a></dt>
-        <dd><%= recipe.description %></dd>
-        <% }); %>
-        <% } else { %>
-        <p>This category has no recipes.</p>
-        <% } %>
-      </dl>
-      <p>
-        <a href="<%= category.url %>/delete">Delete category</a>
-      </p>
-      <p>
-        <a href="<%= category.url %>/update">Update category</a>
-      </p>
+
+    <div class="category-detail">
+      <p class="page-title"><%= category.name %></p>
+      <% if (category_recipes.length > 0) { %>
+      <% category_recipes.forEach(function(recipe) { %>
+      <div class="category-item">
+        <i class="fa-solid fa-utensils"></i>
+        <a href="<%= recipe.url %>"><%= recipe.title %></a>
+        <%= recipe.description %>
+      </div>
+      <% }); %>
+      <% } else { %>
+      <p>This category has no recipes.</p>
+      <% } %>
+
+      <div class="buttons-container">
+        <button class="update-button">
+          <i class="fa-solid fa-pen"></i>
+          <a href="<%= category.url %>/update">update category</a>
+        </button>
+        <button class="delete-button">
+          <i class="fa-solid fa-trash-can"></i>
+          <a href="<%= category.url %>/delete">delete category</a>
+        </button>
+      </div>
     </div>
   </main>
 
