@@ -5,9 +5,9 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const RecipeSchema = new Schema({
-  title: { type: String, required: true },
+  title: { type: String, required: true, maxLength: 100 },
   author: { type: Schema.Types.ObjectId, ref: 'Author', required: true },
-  description: { type: String, required: true },
+  description: { type: String, required: true, maxLenth: 250 },
   link_to_recipe: { type: String, required: true },
   category: [{ type: Schema.Types.ObjectId, ref: 'Category' }],
 });

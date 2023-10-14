@@ -139,8 +139,12 @@ main {
 
 .count {
   font-family: 'Special Elite', serif;
-  color: var(--primary-green);
+  background-color: var(--primary-green);
+  color: var(--primary-light);
   font-weight: 700;
+  padding: 4px;
+  transform: rotate(-3deg);
+  display: inline-block;
 }
 
 .add-button,
@@ -155,6 +159,7 @@ main {
   font-weight: 500;
   letter-spacing: 1px;
   margin: 1.5em;
+  width: fit-content;
 }
 
 .add-button>a,
@@ -261,6 +266,66 @@ a:hover {
   letter-spacing: 2px;
   text-decoration: none;
   border-bottom: 4px double var(--primary-dark);
+}
+
+form {
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75em;
+  padding: 1em 6em;
+  justify-content: center;
+  align-items: center;
+}
+
+.input-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  gap: 10px;
+}
+
+label {
+  font-weight: 600;
+  font-size: 1.10em;
+  letter-spacing: 1px;
+  color: var(--primary-dark);
+  width: fit-content;
+  padding: 5px 5px 5px 0;
+}
+
+input,
+select {
+  height: 2em;
+  padding: 5px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 15px;
+  color: var(--primary-dark);
+}
+
+textarea {
+  resize: none;
+  padding: 5px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 15px;
+  color: var(--primary-dark);
+}
+
+.checkboxes-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  vertical-align: middle;
+  gap: 0.5em;
+}
+
+.checkboxes-container input {
+  vertical-align: middle;
+}
+
+.checkboxes-container label {
+  vertical-align: middle;
 }
 
 /* Footer */
