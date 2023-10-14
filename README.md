@@ -7,7 +7,7 @@ This project primarily demonstrates use of NodeJS/ExpressJS, MongoDB (& mongoose
 
 ## Preview
 
-[![Inventory App](./public/images/demo.png)](https://github.com/yuliana-r/inventory-app)
+[![Inventory App](./public/images/demo.png)](https://veggie-bites.onrender.com/)
 
 ## Media & assets credits:
 
