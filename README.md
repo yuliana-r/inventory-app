@@ -1,5 +1,9 @@
 # Inventory App
-## Introduction 
+## Introduction
+
+This project is a vegan recipes library with ability to browse, create, update and delete recipes, authors and categories.
+
+This project primarily demonstrates use of NodeJS/ExpressJS, MongoDB (& mongoose), EJS and the MVC model.
 
 ## Preview
 
