@@ -6,12 +6,13 @@
 </head>
 
 <body>
-  <!-- header goes here? -->
-  <div class="container max-w-full mx-auto sm:px-4">
-    <div class="flex flex-wrap">
-      <%- include('./templates/sidebar'); %>
-      <div class="pl-4 pr-4 sm:w-4/5">
+  <%- include('./templates/header'); %>
+  <div>
+    <div>
+      <div>
         <h1><%= title %></h1>
+        <button><a href="/catalog/author/create"><i class="fa-solid fa-user-plus"></i> Add author</a></button>
+
         <ul>
           <% if (author_list.length > 0) { %>
           <% author_list.forEach(function(author) { %>

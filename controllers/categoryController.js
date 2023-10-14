@@ -8,7 +8,7 @@ const Recipe = require('../models/recipe');
 exports.category_list = asyncHandler(async (req, res, next) => {
   const allCategories = await Category.find().sort({ id: 1 }).exec();
   res.render('category_list', {
-    title: 'categories',
+    title: 'Categories',
     category_list: allCategories,
   });
 });
@@ -27,7 +27,7 @@ exports.category_detail = asyncHandler(async (req, res, next) => {
   }
 
   res.render('category_detail', {
-    title: 'category detail',
+    title: 'Category detail',
     category,
     category_recipes: recipesInCategory,
   });

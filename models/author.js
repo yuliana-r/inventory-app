@@ -9,7 +9,7 @@ const AuthorSchema = new Schema({
     type: String, required: true, maxLength: 100,
   },
   link_to_blog: {
-    type: String, required: true, maxLength: 150, unique: true,
+    type: String, required: true, maxLength: 150,
   },
 });
 

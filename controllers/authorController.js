@@ -8,7 +8,7 @@ const Recipe = require('../models/recipe');
 exports.author_list = asyncHandler(async (req, res, next) => {
   const allAuthors = await Author.find().sort({ name: 1 }).exec();
   res.render('author_list', {
-    title: 'authors',
+    title: 'Authors',
     author_list: allAuthors,
   });
 });

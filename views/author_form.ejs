@@ -6,21 +6,20 @@
 </head>
 
 <body>
-  <!-- header goes here? -->
-  <div class="container max-w-full mx-auto sm:px-4">
-    <div class="flex flex-wrap">
-      <%- include('./templates/sidebar'); %>
-      <div class="pl-4 pr-4 sm:w-4/5">
+  <%- include('./templates/header'); %>
+  <div>
+    <div>
+      <div>
         <h1><%= title %></h1>
 
         <form method="POST" action="">
           <div>
             <label for="name">Name:</label>
-            <input id="name" class="mt-2" type="text" placeholder="Author name" name="name" required="true" value='<%= (undefined === locals.author ? '' : locals.author.name) %>''>
-            <label for="link_to_blog" class="mt-3">Link to blog:</label>
-            <input id="link_to_blog" class="mt-2" type="text" placeholder="Link to blog" name="link_to_blog" required="true" value=<%= (undefined === locals.author ? '' : locals.author.link_to_blog) %>>
+            <input id="name" type="text" placeholder="Author name" name="name" required="true" value='<%= (undefined === locals.author ? '' : locals.author.name) %>''>
+            <label for="link_to_blog">Link to blog:</label>
+            <input id="link_to_blog" type="text" placeholder="Link to blog" name="link_to_blog" required="true" value=<%= (undefined === locals.author ? '' : locals.author.link_to_blog) %>>
           </div>
-          <button class="mt-4" type="submit">Submit</button>
+          <button type="submit">Submit</button>
         </form>
 
         <% if (locals.errors) { %>

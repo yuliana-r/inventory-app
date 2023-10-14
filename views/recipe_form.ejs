@@ -6,22 +6,21 @@
 </head>
 
 <body>
-  <!-- header goes here? -->
-  <div class="container max-w-full mx-auto sm:px-4">
-    <div class="flex flex-wrap">
-      <%- include('./templates/sidebar'); %>
-      <div class="pl-4 pr-4 sm:w-4/5">
+  <%- include('./templates/header'); %>
+  <div>
+    <div>
+      <div>
         <h1><%= title %></h1>
 
 
         <form method='POST' action=''>
           <div>
             <label for='title'>Title:</label>
-            <input id='title' class='mt-2' type='text' placeholder='Name of the recipe' name='title' required='true' value='<%= (undefined === locals.recipe ? '' : locals.recipe.title) %>'>
+            <input id='title' type='text' placeholder='Name of the recipe' name='title' required='true' value='<%= (undefined === locals.recipe ? '' : locals.recipe.title) %>'>
           </div>
           <div>
-            <label for='author' class="mt-3">Author:</label>
-            <select id='author' class='mt-2' type='select' placeholder='Select author' name='author' required='true'>
+            <label for='author'>Author:</label>
+            <select id='author' type='select' placeholder='Select author' name='author' required='true'>
               <% locals.authors.sort(function(a, b) { let textA = a.name.toUpperCase(); let textB = b.name.toUpperCase(); return (textA < textB) ? -1 : (textA > textB) ? 1 : 0; }); %>
               <% for (let author of authors) { %>
               <% if (locals.recipe) { %>
@@ -33,25 +32,25 @@
             </select>
           </div>
           <div>
-            <label for='description' class="mt-3">Description:</label>
-            <textarea id='description' class='mt-2' type='textarea' placeholder='Description' name='description' required='true'><%= (undefined === locals.recipe ? '' : locals.recipe.description) %></textarea>
-          </div>
-          <div class='form-group'>
-            <label for='link_to_recipe' class="mt-3">Link to recipe:</label>
-            <input id='link_to_recipe' class='mt-2' type='text' placeholder='Link to  recipe' required name='link_to_recipe' value=<%= (undefined === locals.recipe ? '' : locals.recipe.link_to_recipe) %>>
+            <label for='description'>Description:</label>
+            <textarea id='description' type='textarea' placeholder='Description' name='description' required='true'><%= (undefined === locals.recipe ? '' : locals.recipe.description) %></textarea>
           </div>
           <div>
-            <label class="mt-3">Category:</label>
+            <label for='link_to_recipe'>Link to recipe:</label>
+            <input id='link_to_recipe' type='text' placeholder='Link to  recipe' required name='link_to_recipe' value=<%= (undefined === locals.recipe ? '' : locals.recipe.link_to_recipe) %>>
+          </div>
+          <div>
+            <label>Category:</label>
             <div>
               <% for (let category of categories) { %>
               <div style='display: inline; padding-right:10px;'>
-                <input class='mt-2' type='checkbox' name='category' id=<%= category._id %> value=<%= category._id %> <%= category.checked ? 'checked' : '' %>>
-                <label for=<%= category._id %> class="ml-2"><%= category.name %></label>
+                <input type='checkbox' name='category' id=<%= category._id %> value=<%= category._id %> <%= category.checked ? 'checked' : '' %>>
+                <label for=<%= category._id %>><%= category.name %></label>
               </div>
               <% } %>
             </div>
           </div>
-          <button class='mt-4' type='submit'>Submit</button>
+          <button type='submit'>Submit</button>
         </form>
 
 

@@ -6,11 +6,12 @@
 </head>
 
 <body>
-  <!-- header goes here? -->
-  <div class="container max-w-full mx-auto sm:px-4">
-    <div class="flex flex-wrap">
-      <%- include('./templates/sidebar'); %>
-      <div class="pl-4 pr-4 sm:w-4/5">
+  <%- include('./templates/header'); %>
+  <div>
+    <div>
+      <div> <%= title %>
+        <button><a href="/catalog/recipe/create"><i class="fa-solid fa-file-circle-plus"></i> Add Recipe</a></button>
+
         <ul>
           <% if (recipe_list.length > 0) { %>
           <% recipe_list.forEach(function(recipe) { %>

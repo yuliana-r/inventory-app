@@ -20,7 +20,7 @@ exports.index = asyncHandler(async (req, res, next) => {
   ]);
 
   res.render('index', {
-    title: 'home',
+    title: 'Home',
     recipe_count: numRecipes,
     author_count: numAuthors,
     category_count: numCategories,
@@ -35,7 +35,7 @@ exports.recipe_list = asyncHandler(async (req, res, next) => {
     .populate('category')
     .exec();
 
-  res.render('recipe_list', { title: 'recipes', recipe_list: allRecipes });
+  res.render('recipe_list', { title: 'Recipes', recipe_list: allRecipes });
 });
 
 // Display detail page for a specific recipe.

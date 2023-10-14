@@ -6,11 +6,10 @@
 </head>
 
 <body>
-  <!-- header goes here? -->
-  <div class="container max-w-full mx-auto sm:px-4">
-    <div class="flex flex-wrap">
-      <%- include('./templates/sidebar'); %>
-      <div class="pl-4 pr-4 sm:w-4/5">
+  <%- include('./templates/header'); %>
+  <div>
+    <div>
+      <div>
         <p><%= title %></p>
         <p><strong>Author:</strong><a href="<%= recipe.author.url %>"><%= recipe.author.name %></a></p>
         <p><strong>Description:</strong> <%= recipe.description %></p>
