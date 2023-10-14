@@ -12,16 +12,18 @@
     <div class="author-detail">
       <p class="page-title"><%= title %></p>
       <a href="<%= author.link_to_blog %>" target="_blank" class="external-link">LINK TO BLOG</a></p>
-      <% if (author_recipes.length > 0) { %>
-      <% author_recipes.forEach(function(recipe) { %>
-      <div class="recipe-item">
-        <i class="fa-solid fa-utensils"></i>
-        <a href="<%= recipe.url %>"><%= recipe.title %></a>
+      <div class="recipes-container">
+        <% if (author_recipes.length > 0) { %>
+        <% author_recipes.forEach(function(recipe) { %>
+        <div class="recipe-item">
+          <i class="fa-solid fa-utensils"></i>
+          <a href="<%= recipe.url %>"><%= recipe.title %></a>
+        </div>
+        <% }); %>
+        <% } else { %>
+        <p>This author has no recipes.</p>
+        <% } %>
       </div>
-      <% }); %>
-      <% } else { %>
-      <p>This author has no recipes.</p>
-      <% } %>
 
       <div class="buttons-container">
         <button class="update-button">
