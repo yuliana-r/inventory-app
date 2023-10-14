@@ -8,27 +8,27 @@
 <body>
   <%- include('./templates/header'); %>
   <main>
-    <div>
-      <h1><%= title %></h1>
+    <p class="page-title"><%= title %></p>
 
-      <form method="POST" action="">
-        <div>
-          <label for="name">Name:</label>
-          <input id="name" type="text" placeholder="Author name" name="name" required="true" value='<%= (undefined === locals.author ? '' : locals.author.name) %>''>
-              <label for="link_to_blog">Link to blog:</label>
+    <form method="POST" action="">
+      <div class="input-item">
+        <label for="name">Name:</label>
+        <input id="name" type="text" placeholder="Author name" name="name" required="true" value='<%= (undefined === locals.author ? '' : locals.author.name) %>''>
+      </div>
+      <div class="input-item">
+        <label for="link_to_blog">Link to blog:</label>
               <input id="link_to_blog" type="text" placeholder="Link to blog" name="link_to_blog" required="true" value=<%= (undefined === locals.author ? '' : locals.author.link_to_blog) %>>
-            </div>
-            <button type="submit">Submit</button>
-          </form>
+      </div>
+      <button type="submit" class="add-button"><i class="fa-solid fa-thumbs-up"></i> submit</button>
+    </form>
   
-          <% if (locals.errors) { %>
-          <ul>
-            <% for (let error of errors) { %>
-            <li><%= error.msg %></li>
-            <% } %>
-          </ul>
-          <% } %>
-        </div>
+    <% if (locals.errors) { %>
+    <ul>
+      <% for (let error of errors) { %>
+      <li><%= error.msg %></li>
+      <% } %>
+    </ul>
+    <% } %>
   </main>
   
   <footer>
