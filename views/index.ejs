@@ -8,14 +8,15 @@
 <body>
   <%- include('./templates/header'); %>
   <main>
-    <div>
-      <p><%= title %></p>
-      <p>The catalog has the following counts:</p>
-      <ul>
-        <li><strong>Recipes:</strong> <%= recipe_count %></li>
-        <li><strong>Authors:</strong> <%= author_count %></li>
-        <li><strong>Categories:</strong> <%= category_count %></li>
-      </ul>
+    <p class="page-title"><%= title %></p>
+
+    <div class="about">
+      <p>At <span class="accent">veggie bites</span>, we firmly believe in the power of the plate. As passionate advocates of a plant-based lifestyle, we understand that we can't do everything, but we can all do something. And that "something" starts right here, in your kitchen.</p><br>
+      <p>In a world where every bite counts, we've curated a delectable collection of <span class="count"><%= recipe_count %></span> tried, tested, and approved vegan recipes from a diverse array of <span class="count"><%= author_count %></span> talented authors. From sizzling skillet dinners to mouthwatering morsels, our <span class="count"><%= category_count %></span> categories span the full veggie spectrum. Because, as they say, saving the planet one meal at a time can be seriously appetizing!</p><br>
+      <p>Our mission is as clear as a carrot's crunch - adopting a predominantly plant-based diet isn't just good for your health, it's a compassionate choice for animals and a green thumbs-up for the planet. 🌱🌍</p><br>
+      <p>For those of you who are just beginning your veggie voyage and don't know where to turnip (or beet) next, <span class="accent">veggie bites</span> is here to guide you through the lush, vibrant world of vegan cuisine. With our website, finding your plant-powered path is as easy as peas (and carrots!).</p><br>
+      <p>So, whether you're a seasoned vegan chef or a veg-curious newbie, let's embark on this flavorful journey together. It's time to lettuce help you discover the joy in plant-based living and make your meals as fresh, funny, and fabulous as you are!</p><br>
+      <p>Join us at <span class="accent">veggie bites</span> and together, we'll prove that being a hero for the environment and your taste buds is as easy as pie... but with a cauliflower crust, of course! 🥦🥕🌱</p><br>
     </div>
   </main>
   <footer>

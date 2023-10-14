@@ -25,6 +25,7 @@ body {
   flex-direction: column;
   justify-content: space-between;
   background-color: val(--primary-light);
+  text-align: center;
 }
 
 /* Header */
@@ -51,7 +52,7 @@ header {
   letter-spacing: 2px;
   background-color: var(--primary-dark);
   padding: 0.2em;
-  transform: rotate(1deg);
+  transform: rotate(-1deg);
 }
 
 .slogan {
@@ -61,7 +62,7 @@ header {
   font-size: 1.25rem;
   font-weight: 400;
   background-color: var(--primary-dark);
-  transform: rotate(-1deg);
+  transform: rotate(1deg);
 }
 
 .fa-leaf {
@@ -75,6 +76,10 @@ nav {
   margin: 0.5em;
   display: flex;
   gap: 0.5em;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 
 .nav-link {
@@ -95,10 +100,50 @@ nav {
 
 /* Main */
 
+main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 1em;
+}
+
+.page-title {
+  font-family: 'Special Elite', serif;
+  color: var(--primary-dark);
+  font-size: 2em;
+  text-align: center;
+}
+
+.about {
+  width: 80%;
+  padding: 1em;
+  font-family: 'Montserrat', sans-serif;
+  color: var(--primary-dark);
+  font-size: 1.15em;
+  letter-spacing: 1px;
+  user-select: none;
+}
+
+.accent {
+  font-family: 'Special Elite', serif;
+  background-color: var(--primary-dark);
+  color: var(--primary-light);
+  padding: 0.2em;
+  transform: rotate(-1deg);
+  display: inline-block;
+}
+
+.count {
+  font-family: 'Special Elite', serif;
+  color: var(--primary-green);
+  font-weight: 700;
+}
 
 /* Footer */
 footer {
-  background-color: var(--primary-green);
+  background-color: var(--primary-dark);
   user-select: none;
   display: flex;
   flex-direction: row;
