@@ -8,25 +8,23 @@
 <body>
   <%- include('./templates/header'); %>
   <main>
-    <div>
-      <h1><%= title %></h1>
+    <p class="page-title"><%= title %></p>
 
-      <form action="" method="POST">
-        <div>
-          <label for="name">Category:</label>
-          <input id="name" type="text" placeholder="e.g. Festive" name="name" required value="<%= (typeof category === 'undefined' ? '' : category.name) %>">
-        </div>
-        <button type="submit">Submit</button>
-      </form>
+    <form action="" method="POST">
+      <div class="input-item">
+        <label for="name">Category:</label>
+        <input id="name" type="text" placeholder="e.g. Festive" name="name" required value="<%= (typeof category === 'undefined' ? '' : category.name) %>">
+      </div>
+      <button type="submit" class="add-button"><i class="fa-solid fa-thumbs-up"></i> submit</button>
+    </form>
 
-      <% if (locals.errors) { %>
-      <ul>
-        <% errors.forEach(function(error) { %>
-        <li><%= error.msg %></li>
-        <% }); %>
-      </ul>
-      <% } %>
-    </div>
+    <% if (locals.errors) { %>
+    <ul>
+      <% errors.forEach(function(error) { %>
+      <li><%= error.msg %></li>
+      <% }); %>
+    </ul>
+    <% } %>
   </main>
 
   <footer>

@@ -41,12 +41,8 @@ exports.category_create_get = asyncHandler(async (req, res, next) => {
 // Handle Category create on POST.
 exports.category_create_post = [
   body('name', 'Category must contain at least 3 characters.')
-    .trim()
     .isLength({ min: 3 })
-    .escape()
-    .withMessage('Category name must be specified.')
-    .isAlphanumeric()
-    .withMessage('Category name has non-alphanumeric characters.'),
+    .withMessage('Category name must be specified.'),
 
   asyncHandler(async (req, res, next) => {
     const errors = validationResult(req);
@@ -126,9 +122,7 @@ exports.category_update_get = asyncHandler(async (req, res, next) => {
 // Handle Category update on POST.
 exports.category_update_post = [
   body('name', 'Category name must contain at least 3 characters')
-    .trim()
-    .isLength({ min: 3 })
-    .escape(),
+    .isLength({ min: 3 }),
 
   asyncHandler(async (req, res, next) => {
     const errors = validationResult(req);
