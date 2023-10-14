@@ -8,21 +8,19 @@
 <body>
   <%- include('./templates/header'); %>
   <main>
-    <div>
-      <h1><%= title %></h1>
-      <button><a href="/catalog/author/create"><i class="fa-solid fa-user-plus"></i> Add author</a></button>
-      <ul>
-        <% if (author_list.length > 0) { %>
-        <% author_list.forEach(function(author) { %>
-        <li>
-          <a href="<%= author.url %>"><%= author.name %></a>
-        </li>
-        <% }); %>
-        <% } else { %>
-        <li>There are no authors.</li>
-        <% } %>
-      </ul>
+    <p class="page-title"><%= title %></p>
+    <button class="add-button"><a href="/catalog/author/create"><i class="fa-solid fa-user-plus"></i> add author</a></button>
+    <div class="authors-container">
+      <% if (author_list.length > 0) { %>
+      <% author_list.forEach(function(author) { %>
+      <div class="author-item">
+        <i class="fa-solid fa-user"></i><a href="<%= author.url %>"><%= author.name %></a>
+      </div>
+      <% }); %>
     </div>
+    <% } else { %>
+    <p>There are no authors.</p>
+    <% } %>
   </main>
 
   <footer>

@@ -11,7 +11,7 @@
 :root {
   --primary-dark: #333333;
   --primary-light: #F5F5F5;
-  --primary-green: #79AC78;
+  --primary-green: #6d9b6c;
   --secondary-green: #618a60;
 }
 
@@ -144,7 +144,7 @@ main {
 
 .add-button {
   padding: 0.5em 1.25em;
-  background-color: #8f72a1;
+  background-color: var(--primary-green);
   font-family: 'Montserrat', sans-serif;
   border: 1px solid var(--primary-dark);
   border-radius: 5px;
@@ -165,7 +165,8 @@ main {
   cursor: grab;
 }
 
-.recipes-container {
+.recipes-container,
+.authors-container {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -173,7 +174,8 @@ main {
   gap: 1em;
 }
 
-.recipe-item {
+.recipe-item,
+.author-item {
   display: flex;
   gap: 0.5em;
 }
