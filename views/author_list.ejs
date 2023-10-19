@@ -14,7 +14,9 @@
       <% if (author_list.length > 0) { %>
       <% author_list.forEach(function(author) { %>
       <div class="author-item">
-        <i class="fa-solid fa-user"></i><a href="<%= author.url %>"><%= author.name %></a>
+        <i class="fa-solid fa-user"></i>
+        <a href="<%= author.url %>">
+          <%= author.name %></a>
       </div>
       <% }); %>
     </div>

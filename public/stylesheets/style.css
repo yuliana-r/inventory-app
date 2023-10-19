@@ -202,7 +202,7 @@ main {
 .author-item,
 .category-item {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   gap: 0.75em;
   flex-wrap: wrap;
@@ -211,8 +211,9 @@ main {
   padding: 0.75em;
   margin: 0.25em;
   width: fit-content;
-  text-align: center;
+  text-align: left;
   font-size: 1.1em;
+  word-break: break-word;
 }
 
 .fa-utensils {
