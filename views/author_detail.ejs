@@ -12,6 +12,10 @@
     <div class="author-detail">
       <p class="page-title"><%= title %></p>
       <a href="<%= author.link_to_blog %>" target="_blank" class="external-link">LINK TO BLOG</a></p>
+      <div class="buttons-container">
+        <a href="<%= author.url %>/update" class="update-button"><i class="fa-solid fa-pen"></i> edit</a>
+        <a href="<%= author.url %>/delete" class="delete-button"><i class="fa-solid fa-trash-can"></i> delete</a>
+      </div>
       <div class="recipes-container">
         <% if (author_recipes.length > 0) { %>
         <% author_recipes.forEach(function(recipe) { %>
@@ -23,17 +27,6 @@
         <% } else { %>
         <p>This author has no recipes.</p>
         <% } %>
-      </div>
-
-      <div class="buttons-container">
-        <button class="update-button">
-          <i class="fa-solid fa-pen"></i>
-          <a href="<%= author.url %>/update">update author</a>
-        </button>
-        <button class="delete-button">
-          <i class="fa-solid fa-trash-can"></i>
-          <a href="<%= author.url %>/delete">delete author</a>
-        </button>
       </div>
     </div>
   </main>

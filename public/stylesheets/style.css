@@ -159,18 +159,13 @@ main {
   border: 1px solid var(--primary-dark);
   color: var(--primary-light);
   border-radius: 5px;
-  font-size: 15px;
+  font-size: 17px;
   font-weight: 500;
   letter-spacing: 1px;
-  margin: 1.5em;
-  width: fit-content;
-}
-
-.add-button>a,
-.update-button>a,
-.delete-button>a {
   text-decoration: none;
-  color: var(--primary-light);
+  width: 200px;
+  display: inline-block;
+  margin: 0.5em;
 }
 
 .add-button:hover,

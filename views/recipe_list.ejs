@@ -9,7 +9,8 @@
   <%- include('./templates/header'); %>
   <main>
     <p class="page-title"><%= title %></p>
-    <button class="add-button"><a href="/catalog/recipe/create"><i class="fa-solid fa-file-circle-plus"></i> add recipe</a></button>
+    <a href="/catalog/recipe/create" class="add-button"><i class="fa-solid fa-file-circle-plus"></i> add recipe</a>
+    <!-- <button class="add-button"><a href="/catalog/recipe/create"><i class="fa-solid fa-file-circle-plus"></i> add recipe</a></button> -->
 
     <div class="recipes-container">
       <% if (recipe_list.length > 0) { %>

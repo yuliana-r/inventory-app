@@ -9,7 +9,7 @@
   <%- include('./templates/header'); %>
   <main>
     <p class="page-title"><%= title %></p>
-    <form method='POST' action=''>
+    <form id="recipe-form" method='POST' action=''>
       <div class="input-item">
         <label for='title'>Title:</label>
         <input id='title' type='text' placeholder='Name of the recipe' maxlength="100" name='title' required='true' value='<%= (undefined === locals.recipe ? '' : locals.recipe.title) %>'>
@@ -62,6 +62,27 @@
   <footer>
     <%- include('./templates/footer') %>
   </footer>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const form = document.getElementById('recipe-form');
+      const checkboxes = form.querySelectorAll('input[type="checkbox"]');
+
+      form.addEventListener('submit', function(event) {
+        let checked = false;
+        for (let checkbox of checkboxes) {
+          if (checkbox.checked) {
+            checked = true;
+            break;
+          }
+        }
+
+        if (!checked) {
+          alert('Please check at least one category.');
+          event.preventDefault();
+        }
+      });
+    });
+  </script>
 </body>
 
 </html>

@@ -11,6 +11,10 @@
 
     <div class="category-detail">
       <p class="page-title"><%= category.name %></p>
+      <div class="buttons-container">
+        <a href="<%= category.url %>/update" class="update-button"><i class="fa-solid fa-pen"></i> edit</a>
+        <a href="<%= category.url %>/delete" class="delete-button"><i class="fa-solid fa-trash-can"></i> delete</a>
+      </div>
       <% if (category_recipes.length > 0) { %>
       <% category_recipes.forEach(function(recipe) { %>
       <div class="category-item">
@@ -23,16 +27,6 @@
       <p>This category has no recipes.</p>
       <% } %>
 
-      <div class="buttons-container">
-        <button class="update-button">
-          <i class="fa-solid fa-pen"></i>
-          <a href="<%= category.url %>/update">update category</a>
-        </button>
-        <button class="delete-button">
-          <i class="fa-solid fa-trash-can"></i>
-          <a href="<%= category.url %>/delete">delete category</a>
-        </button>
-      </div>
     </div>
   </main>
 

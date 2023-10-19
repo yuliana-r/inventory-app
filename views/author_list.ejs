@@ -9,7 +9,7 @@
   <%- include('./templates/header'); %>
   <main>
     <p class="page-title"><%= title %></p>
-    <button class="add-button"><a href="/catalog/author/create"><i class="fa-solid fa-user-plus"></i> add author</a></button>
+    <a href="/catalog/author/create" class="add-button"><i class="fa-solid fa-user-plus"></i> add author</a>
     <div class="authors-container">
       <% if (author_list.length > 0) { %>
       <% author_list.forEach(function(author) { %>
