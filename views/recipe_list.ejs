@@ -16,9 +16,9 @@
       <% if (recipe_list.length > 0) { %>
       <% recipe_list.forEach(function(recipe) { %>
       <div class="recipe-item">
-        <p><i class="fa-solid fa-utensils"></i> <a href="<%= recipe.url %>"> <%= recipe.title %></a></p>
+        <p><i class="fa-solid fa-utensils"></i> <a href="<%= recipe.url %>"> <%= recipe.title %></p>
         |
-        <p><i class="fa-solid fa-user"></i> <a href="<%= recipe.author.url %>"> <%= recipe.author.name %></a></p>
+        <p><i class="fa-solid fa-user"></i> <a href="<%= recipe.author.url %>"><%= recipe.author.name %></p>
         |
         <p>
           <i class="fa-solid fa-hourglass-half"></i>
