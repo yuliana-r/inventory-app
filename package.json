@@ -1,0 +1,28 @@
+{
+  "name": "inventory-app",
+  "version": "1.0.0",
+  "description": "",
+  "homepage": "https://github.com/yuliana-r/inventory-app#readme",
+  "bugs": {
+    "url": "https://github.com/yuliana-r/inventory-app/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yuliana-r/inventory-app.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon app.js"
+  },
+  "dependencies": {
+    "dotenv": "^17.0.1",
+    "ejs": "^3.1.10",
+    "express": "^5.1.0",
+    "express-validator": "^7.2.1",
+    "nodemon": "^3.1.10",
+    "pg": "^8.16.3"
+  }
+}
