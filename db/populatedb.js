@@ -12,14 +12,21 @@ CREATE TABLE IF NOT EXISTS brands (
   name VARCHAR (20) NOT NULL
 );
 
+CREATE TABLE IF NOT EXISTS units (
+  unit_id SERIAL PRIMARY KEY,
+  name VARCHAR (20) NOT NULL UNIQUE
+);
+
 CREATE TABLE IF NOT EXISTS products (
   product_id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
   name VARCHAR (20) NOT NULL,
-  qty INTEGER,
+  qty NUMERIC(10,2),
+  unit_id INTEGER,
   category_id INTEGER,
   brand_id INTEGER,
   FOREIGN KEY (category_id) REFERENCES categories (category_id),
-  FOREIGN KEY (brand_id) REFERENCES brands (brand_id)
+  FOREIGN KEY (brand_id) REFERENCES brands (brand_id),
+  FOREIGN KEY (unit_id) REFERENCES units (unit_id)
 );
 
 INSERT INTO categories (name)
@@ -30,11 +37,16 @@ INSERT INTO brands (name)
 VALUES
 ('Sainsbury''s'), ('Tesco'), ('M & S'), ('Aldi');
 
-INSERT INTO products (name, qty, category_id, brand_id)
+INSERT INTO units (name)
 VALUES
-('flour', 1, 1, 4),
-('prawns', 1, 3, 1),
-('cheese', 1, 2, 2);
+('g'), ('piece'), ('kg'), ('bag');
+
+INSERT INTO products (name, qty, unit_id, category_id, brand_id)
+VALUES
+('flour', 700, 1, 1, 4),
+('prawns', 1, 4, 3, 1),
+('apples', 10, 2, 2, 2),
+('potatoes', 2.5, 3, 1, 3);
 `;
 
 async function main() {
