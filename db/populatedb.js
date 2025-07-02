@@ -39,7 +39,7 @@ VALUES
 
 INSERT INTO units (name)
 VALUES
-('g'), ('piece'), ('kg'), ('bag');
+('g'), ('piece'), ('kg'), ('bag'), ('ml');
 
 INSERT INTO items (name, qty, unit_id, category_id, brand_id)
 VALUES
