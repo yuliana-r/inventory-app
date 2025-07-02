@@ -1,6 +1,18 @@
+const db = require('../db/queries/item_queries');
+
+function handleServerError(res, error, message = 'Internal Server Error') {
+  console.error(message, error);
+  res.status(500).send(message);
+}
+
 // GET /items
 exports.getAllItems = async (req, res) => {
-  res.send('all items page');
+  try {
+    const items = await db.getAllItems();
+    res.send(items);
+  } catch (error) {
+    handleServerError(res, error);
+  }
 };
 
 // GET /items/new
@@ -16,7 +28,15 @@ exports.createItem = (req, res) => {
 // GET /items/:itemId
 exports.getItemById = async (req, res) => {
   const { itemId } = req.params;
-  res.send(`displaying item with id:${itemId}`);
+  try {
+    const item = await db.getItemById(itemId);
+    if (!item) {
+      return res.status(404).send('Item not found');
+    }
+    res.send(item);
+  } catch (error) {
+    handleServerError(res, error);
+  }
 };
 
 // GET /items/:itemId/update
@@ -36,5 +56,11 @@ exports.showDeleteItemForm = (req, res) => {
 
 // POST /items/:itemId/delete
 exports.deleteItem = async (req, res) => {
-  res.send('deleting item here');
+  const { itemId } = req.params;
+  try {
+    await db.deleteItem(itemId);
+    res.redirect('/items');
+  } catch (error) {
+    handleServerError(res, error);
+  }
 };
