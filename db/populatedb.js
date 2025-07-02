@@ -17,8 +17,8 @@ CREATE TABLE IF NOT EXISTS units (
   name VARCHAR (20) NOT NULL UNIQUE
 );
 
-CREATE TABLE IF NOT EXISTS products (
-  product_id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+CREATE TABLE IF NOT EXISTS items (
+  item_id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
   name VARCHAR (20) NOT NULL,
   qty NUMERIC(10,2),
   unit_id INTEGER,
@@ -41,7 +41,7 @@ INSERT INTO units (name)
 VALUES
 ('g'), ('piece'), ('kg'), ('bag');
 
-INSERT INTO products (name, qty, unit_id, category_id, brand_id)
+INSERT INTO items (name, qty, unit_id, category_id, brand_id)
 VALUES
 ('flour', 700, 1, 1, 4),
 ('prawns', 1, 4, 3, 1),
