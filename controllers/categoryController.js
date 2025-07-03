@@ -30,10 +30,11 @@ exports.getCategoryById = async (req, res) => {
   const { categoryId } = req.params;
   try {
     const category = await db.getCategoryById(categoryId);
+    const itemsInCategory = await db.getItemByCategory(categoryId);
     if (!category) {
       return res.status(404).send('Category not found');
     }
-    res.send(category);
+    res.render('category_detail', { title: 'category detail', category, itemsInCategory });
   } catch (error) {
     handleServerError(res, error);
   }

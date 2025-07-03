@@ -9,7 +9,7 @@
 
   <% if (categories_list.length > 0) { %>
   <% categories_list.forEach(function(category) {%>
-  <a href=<%= `/categories/${category.category_id}` %> target='_blank'><%= category.name %></a>
+  <a href=<%= `/categories/${category.category_id}` %>><%= category.name %></a>
   <%}); %>
   <% } %>
 

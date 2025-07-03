@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('./partials/head') %>
+
+<body>
+  <%- include('./partials/header') %>
+  <p><%= item.item_name %></p>
+  <p><%= item.qty %></p>
+  <p><%= item.unit_name %></p>
+  <p><%= item.category %></p>
+  <p><%= item.brand_name %></p>
+
+
+  <a href=<%= `/items/${item.item_id}/update` %>><button>edit</button></a>
+  <a href=<%= `/items/${item.item_id}/delete` %>><button>delete</button></a>
+
+  <%- include('./partials/footer') %>
+</body>
+
+</html>

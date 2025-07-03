@@ -6,9 +6,15 @@
 <body>
   <%- include('./partials/header') %>
 
+  <p><%= brand.name %></p>
 
-  <% if (items_list.length > 0) { %>
-  <% items_list.forEach(function(item) {%>
+  <a href=<%= `/brands/${brand.brand_id}/update` %>><button>edit</button></a>
+  <a href=<%= `/brands/${brand.brand_id}/delete` %>><button>delete</button></a>
+
+  <!-- display all items of this brand -->
+
+  <% if (itemsOfBrand.length > 0) { %>
+  <% itemsOfBrand.forEach(function(item) {%>
   <a href=<%= `/items/${item.item_id}` %>><%= item.item_name %></a>
   <p><%= item.qty %></p>
   <p><%= item.unit_name %></p>
@@ -17,9 +23,7 @@
   <%}); %>
   <% } %>
 
-  <a href="/items/new">
-    <button>new item</button>
-  </a>
+
   <%- include('./partials/footer') %>
 </body>
 

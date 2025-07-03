@@ -30,10 +30,11 @@ exports.getBrandById = async (req, res) => {
   const { brandId } = req.params;
   try {
     const brand = await db.getBrandById(brandId);
+    const itemsOfBrand = await db.getItemByBrand(brandId);
     if (!brand) {
       return res.status(404).send('Brand not found');
     }
-    res.send(brand);
+    res.render('brand_detail', { title: 'brand detail', brand, itemsOfBrand });
   } catch (error) {
     handleServerError(res, error);
   }

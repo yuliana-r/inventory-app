@@ -33,7 +33,7 @@ exports.getItemById = async (req, res) => {
     if (!item) {
       return res.status(404).send('Item not found');
     }
-    res.send(item);
+    res.render('item_detail', { title: 'item details', item });
   } catch (error) {
     handleServerError(res, error);
   }

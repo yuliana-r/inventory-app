@@ -9,7 +9,7 @@
 
   <% if (brands_list.length > 0) { %>
   <% brands_list.forEach(function(brand) {%>
-  <a href=<%= `/brands/${brand.brand_id}` %> target='_blank'><%= brand.name %></a>
+  <a href=<%= `/brands/${brand.brand_id}` %>><%= brand.name %></a>
   <%}); %>
   <% } %>
 
