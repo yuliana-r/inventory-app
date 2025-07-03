@@ -9,7 +9,7 @@ function handleServerError(res, error, message = 'Internal Server Error') {
 exports.getAllBrands = async (req, res) => {
   try {
     const brands = await db.getAllBrands();
-    res.send(brands);
+    res.render('brand_list', { title: 'brands', brands_list: brands });
   } catch (error) {
     handleServerError(res, error);
   }

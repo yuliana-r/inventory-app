@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('./partials/head') %>
+
+<body>
+  <%- include('./partials/header') %>
+
+
+  <% if (categories_list.length > 0) { %>
+  <% categories_list.forEach(function(category) {%>
+  <a href=<%= `/categories/${category.category_id}` %> target='_blank'><%= category.name %></a>
+  <%}); %>
+  <% } %>
+
+  <a href="/categories/new">
+    <button>new category</button>
+  </a>
+  <%- include('./partials/footer') %>
+</body>
+
+</html>

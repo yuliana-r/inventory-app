@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('./partials/head') %>
+
+<body>
+  <%- include('./partials/header') %>
+
+
+  <% if (items_list.length > 0) { %>
+  <% items_list.forEach(function(item) {%>
+  <a href=<%= `/items/${item.item_id}` %> target='_blank'><%= item.name %></a>
+  <%}); %>
+  <% } %>
+
+  <a href="/items/new">
+    <button>new item</button>
+  </a>
+  <%- include('./partials/footer') %>
+</body>
+
+</html>

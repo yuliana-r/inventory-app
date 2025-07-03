@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('./partials/head') %>
+
+<body>
+  <%- include('./partials/header') %>
+
+
+  <% if (brands_list.length > 0) { %>
+  <% brands_list.forEach(function(brand) {%>
+  <a href=<%= `/brands/${brand.brand_id}` %> target='_blank'><%= brand.name %></a>
+  <%}); %>
+  <% } %>
+
+  <a href="/brands/new">
+    <button>new brand</button>
+  </a>
+  <%- include('./partials/footer') %>
+</body>
+
+</html>
