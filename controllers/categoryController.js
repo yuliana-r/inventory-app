@@ -17,7 +17,7 @@ exports.getAllCategories = async (req, res) => {
 
 // GET /categories/new
 exports.showNewCategoryForm = (req, res) => {
-  res.send('render New Category form here');
+  res.render('category_form', { title: 'new category' });
 };
 
 // POST /categories/new

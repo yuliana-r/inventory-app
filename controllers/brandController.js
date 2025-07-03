@@ -17,7 +17,7 @@ exports.getAllBrands = async (req, res) => {
 
 // GET /brands/new
 exports.showNewBrandForm = (req, res) => {
-  res.send('render New Brand form here');
+  res.render('brand_form', { title: 'new brand' });
 };
 
 // POST /brands/new

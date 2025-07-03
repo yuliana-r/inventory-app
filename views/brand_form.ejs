@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('./partials/head') %>
+
+<body>
+  <%- include('./partials/header') %>
+  <p>new brand</p>
+
+  <form action="/brands/new" method="POST">
+
+    <label for="name">Brand name</label>
+    <input type="text" id="name" placeholder="Waitrose">
+
+    <button type="submit">submit</button>
+  </form>
+  <%- include('./partials/footer') %>
+</body>
+
+</html>
