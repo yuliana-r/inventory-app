@@ -1,4 +1,7 @@
 const db = require('../db/queries/item_queries');
+const unit_db = require('../db/queries/unit_queries');
+const brand_db = require('../db/queries/brand_queries');
+const category_db = require('../db/queries/category_queries');
 
 function handleServerError(res, error, message = 'Internal Server Error') {
   console.error(message, error);
@@ -16,13 +19,32 @@ exports.getAllItems = async (req, res) => {
 };
 
 // GET /items/new
-exports.showNewItemForm = (req, res) => {
-  res.send('render New Item form here');
+exports.showNewItemForm = async (req, res) => {
+  try {
+    const units = await unit_db.getAllUnits();
+    const categories = await category_db.getAllCategories();
+    const brands = await brand_db.getAllBrands();
+
+    res.render('item_form', {
+      title: 'new item',
+      units,
+      categories,
+      brands,
+    });
+  } catch (error) {
+    handleServerError(res, error);
+  }
 };
 
 // POST /items/new
-exports.createItem = (req, res) => {
-  res.send('posting new item to the database here');
+exports.createItem = async (req, res) => {
+  const { name, qty, unit_id, category_id, brand_id } = req.body;
+  try {
+    await db.insertItem(name, qty, unit_id, category_id, brand_id);
+    res.redirect('/items');
+  } catch (error) {
+    handleServerError(res, error);
+  }
 };
 
 // GET /items/:itemId

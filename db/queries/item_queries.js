@@ -40,7 +40,13 @@ async function getItemById(id) {
   return rows[0];
 }
 
-async function insertItem(name, qty, unit_id, category_id, brand_id) {}
+async function insertItem(name, qty, unit_id, category_id, brand_id) {
+  await pool.query(
+    `INSERT INTO items (name, qty, unit_id, category_id, brand_id)
+    VALUES ($1, $2, $3, $4, $5)`,
+    [name, qty, unit_id, category_id, brand_id]
+  );
+}
 
 async function updateItem(id, name, qty, unit_id, category_id, brand_id) {}
 

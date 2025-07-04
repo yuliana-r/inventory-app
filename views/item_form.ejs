@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('./partials/head') %>
+
+<body>
+  <%- include('./partials/header') %>
+
+  <p>new item</p>
+
+  <form action="/items/new" method="POST">
+
+    <label for="name">Name:</label>
+    <input type="text" name="name" id="name" required>
+
+    <label for="qty">Quantity</label>
+    <input type="number" name="qty" id="qty" min="1" required>
+
+    <label for="unit">Unit:</label>
+    <select name="unit_id" id="unit_id" required>
+      <% units.forEach((unit) =>{ %>
+      <option value="<%= unit.unit_id %>"><%= unit.name %></option>
+      <%}) %>
+    </select>
+
+    <label for="category">Category</label>
+    <select name="category_id" id="category_id" required>
+      <% categories.forEach((category) =>{ %>
+      <option value="<%= category.category_id %>"><%= category.name %></option>
+      <%}) %>
+    </select>
+
+    <label for="brand">Brand:</label>
+    <select name="brand_id" id="brand_id" required>
+      <% brands.forEach((brand) =>{ %>
+      <option value="<%= brand.brand_id %>"><%= brand.name %></option>
+      <%}) %>
+    </select>
+
+    <button type="submit">Add Item</button>
+
+  </form>
+  <%- include('./partials/footer') %>
+</body>
+
+</html>

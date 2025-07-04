@@ -10,6 +10,8 @@ app.set('view engine', 'ejs');
 
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(express.urlencoded({ extended: true }));
+
 // assign routers to paths
 const indexRouter = require('./routes/index');
 const itemsRouter = require('./routes/item');
