@@ -17,7 +17,7 @@ exports.getAllBrands = async (req, res) => {
 
 // GET /brands/new
 exports.showNewBrandForm = (req, res) => {
-  res.render('brand_form', { title: 'new brand' });
+  res.render('brand_form', { title: 'new brand', brand: undefined });
 };
 
 // POST /brands/new

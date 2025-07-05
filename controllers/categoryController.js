@@ -17,7 +17,7 @@ exports.getAllCategories = async (req, res) => {
 
 // GET /categories/new
 exports.showNewCategoryForm = (req, res) => {
-  res.render('category_form', { title: 'new category' });
+  res.render('category_form', { title: 'new category', category: undefined });
 };
 
 // POST /categories/new
@@ -62,11 +62,6 @@ exports.updateCategory = async (req, res) => {
   const { categoryName } = req.body;
   await db.updateCategory(categoryId, categoryName);
   res.redirect(`/categories/${categoryId}`);
-};
-
-// GET /categories/:categoryId/delete
-exports.showDeleteCategoryForm = (req, res) => {
-  res.send('render Delete category form here');
 };
 
 // POST /categories/:categoryId/delete

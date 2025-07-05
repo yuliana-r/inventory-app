@@ -13,7 +13,7 @@
     <label for="name">Category name</label>
     <input type="text" id="name" name="categoryName" placeholder="Miscellaneous" value="<%= (category === undefined ? '' : category.name) %>">
 
-    <button type="submit">submit</button>
+    <button type="submit"><%= category ? 'update category' : 'add category' %></button>
   </form>
   <%- include('./partials/footer') %>
 </body>

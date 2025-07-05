@@ -27,6 +27,7 @@ exports.showNewItemForm = async (req, res) => {
 
     res.render('item_form', {
       title: 'new item',
+      item: undefined,
       units,
       categories,
       brands,
@@ -62,18 +63,29 @@ exports.getItemById = async (req, res) => {
 };
 
 // GET /items/:itemId/update
-exports.showUpdateItemForm = (req, res) => {
-  res.send('render Update Item form here');
+exports.showUpdateItemForm = async (req, res) => {
+  try {
+    const { itemId } = req.params;
+
+    const item = await db.getItemById(itemId);
+    const units = await unit_db.getAllUnits();
+    const categories = await category_db.getAllCategories();
+    const brands = await brand_db.getAllBrands();
+
+    res.render('item_form', { title: 'update item', item, units, categories, brands });
+  } catch (error) {
+    handleServerError(res, error);
+  }
 };
 
 // POST /items/:itemId/update
 exports.updateItem = async (req, res) => {
-  res.send('updating item here');
-};
+  const { itemId } = req.params;
 
-// GET /items/:itemId/delete
-exports.showDeleteItemForm = (req, res) => {
-  res.send('render Delete Item form here');
+  const { name, qty, unit_id, category_id, brand_id } = req.body;
+
+  await db.updateItem(itemId, name, qty, unit_id, category_id, brand_id);
+  res.redirect(`/items/${itemId}`);
 };
 
 // POST /items/:itemId/delete

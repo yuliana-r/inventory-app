@@ -24,8 +24,11 @@ async function getItemById(id) {
     `
     SELECT 
       items.item_id,
-      items.name AS item_name,
+      items.name,
       items.qty,
+      items.unit_id,
+      items.category_id,
+      items.brand_id,
       units.name AS unit_name,
       categories.name AS category_name,
       brands.name AS brand_name
@@ -49,7 +52,12 @@ async function insertItem(name, qty, unit_id, category_id, brand_id) {
   );
 }
 
-async function updateItem(id, name, qty, unit_id, category_id, brand_id) {}
+async function updateItem(id, name, qty, unit_id, category_id, brand_id) {
+  await pool.query(
+    `UPDATE items SET name = $1, qty = $2, unit_id = $3, category_id = $4, brand_id = $5 WHERE item_id = $6`,
+    [name, qty, unit_id, category_id, brand_id, id]
+  );
+}
 
 async function deleteItem(id) {
   await pool.query('DELETE FROM items WHERE item_id = $1', [id]);
