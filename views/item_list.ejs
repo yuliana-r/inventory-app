@@ -18,6 +18,8 @@
   <p><%= item.category_name %></p>
   <p><%= item.brand_name %></p>
   <%}); %>
+  <% } else { %>
+  <p>There are no items to display yet. Why don't you create one <a href="/items/new">here</a>?</p>
   <% } %>
 
 

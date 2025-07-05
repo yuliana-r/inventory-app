@@ -9,6 +9,7 @@
 
   <p><%= title%></p>
 
+  <% if (categories.length && brands.length){ %>
   <form action="<%= item ? `/items/${item.item_id}/update` : '/items/new' %>" method="POST">
 
     <label for="name">Name:</label>
@@ -43,6 +44,18 @@
     <button type="submit"><%= item ? 'update item' : 'add item' %></button>
 
   </form>
+
+  <% } else {%>
+  <p>You need to create the following before adding an item:</p>
+
+  <ul>
+    <% if (!categories.length) { %><li><a href="/categories/new">Create a category</a></li><% } %>
+    <% if (!brands.length) { %><li><a href="/brands/new">Create a brand</a></li><% } %>
+  </ul>
+
+  <% } %>
+
+
   <%- include('./partials/footer') %>
 </body>
 

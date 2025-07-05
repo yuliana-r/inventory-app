@@ -11,6 +11,8 @@
   <% brands_list.forEach(function(brand) {%>
   <a href=<%= `/brands/${brand.brand_id}` %>><%= brand.name %></a>
   <%}); %>
+  <% } else { %>
+  <p>There are no brands to display yet. Why don't you create one <a href="/brands/new">here</a>?</p>
   <% } %>
 
   <a href="/brands/new">
