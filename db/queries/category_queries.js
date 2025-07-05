@@ -32,7 +32,9 @@ async function getItemByCategory(id) {
   return rows;
 }
 
-async function insertCategory(name) {}
+async function insertCategory(name) {
+  await pool.query(`INSERT INTO categories (name) VALUES ($1)`, [name]);
+}
 
 async function updateCategory(id, name) {}
 

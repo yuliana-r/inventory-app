@@ -21,8 +21,14 @@ exports.showNewCategoryForm = (req, res) => {
 };
 
 // POST /categories/new
-exports.createCategory = (req, res) => {
-  res.send('posting new category to the database here');
+exports.createCategory = async (req, res) => {
+  const { categoryName } = req.body;
+  try {
+    await db.insertCategory(categoryName);
+    res.redirect('/categories');
+  } catch (error) {
+    handleServerError(res, error);
+  }
 };
 
 // GET /categories/:categoryId
