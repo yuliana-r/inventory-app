@@ -32,7 +32,9 @@ async function getItemByBrand(id) {
   return rows;
 }
 
-async function insertBrand(name) {}
+async function insertBrand(name) {
+  await pool.query(`INSERT INTO brands (name) VALUES ($1)`, [name]);
+}
 
 async function updateBrand(id, name) {}
 

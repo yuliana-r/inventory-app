@@ -21,8 +21,14 @@ exports.showNewBrandForm = (req, res) => {
 };
 
 // POST /brands/new
-exports.createBrand = (req, res) => {
-  res.send('posting new brand to the database here');
+exports.createBrand = async (req, res) => {
+  const { brandName } = req.body;
+  try {
+    await db.insertBrand(brandName);
+    res.redirect('/brands');
+  } catch (error) {
+    handleServerError(res, error);
+  }
 };
 
 // GET /brands/:brandId
