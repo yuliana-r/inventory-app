@@ -6,12 +6,12 @@
 <body>
   <%- include('./partials/header') %>
   <%- include('./partials/navbar') %>
-  <p>new category</p>
+  <p><%= title %></p>
 
-  <form action="/categories/new" method="POST">
+  <form action="<%= category ? `/categories/${category.category_id}/update` : '/categories/new' %>" method="POST">
 
     <label for="name">Category name</label>
-    <input type="text" id="name" name="categoryName" placeholder="Miscellaneous">
+    <input type="text" id="name" name="categoryName" placeholder="Miscellaneous" value="<%= (category === undefined ? '' : category.name) %>">
 
     <button type="submit">submit</button>
   </form>

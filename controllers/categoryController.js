@@ -47,13 +47,21 @@ exports.getCategoryById = async (req, res) => {
 };
 
 // GET /categories/:categoryId/update
-exports.showUpdateCategoryForm = (req, res) => {
-  res.send('render Update category form here');
+exports.showUpdateCategoryForm = async (req, res) => {
+  const { categoryId } = req.params;
+
+  const category = await db.getCategoryById(categoryId);
+
+  res.render('category_form', { title: 'update category', category });
 };
 
 // POST /categories/:categoryId/update
 exports.updateCategory = async (req, res) => {
-  res.send('updating category here');
+  const { categoryId } = req.params;
+
+  const { categoryName } = req.body;
+  await db.updateCategory(categoryId, categoryName);
+  res.redirect(`/categories/${categoryId}`);
 };
 
 // GET /categories/:categoryId/delete

@@ -13,6 +13,7 @@ async function getAllItems() {
   LEFT JOIN units ON items.unit_id = units.unit_id
   LEFT JOIN categories ON items.category_id = categories.category_id
   LEFT JOIN brands ON items.brand_id = brands.brand_id
+  ORDER BY item_id
 `);
 
   return rows;
