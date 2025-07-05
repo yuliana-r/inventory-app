@@ -28,9 +28,9 @@ exports.showNewItemForm = async (req, res) => {
     res.render('item_form', {
       title: 'new item',
       item: undefined,
-      units,
-      categories,
-      brands,
+      units: units || [],
+      categories: categories || [],
+      brands: brands || [],
     });
   } catch (error) {
     handleServerError(res, error);

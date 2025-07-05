@@ -28,7 +28,28 @@ CREATE TABLE IF NOT EXISTS items (
   FOREIGN KEY (brand_id) REFERENCES brands (brand_id),
   FOREIGN KEY (unit_id) REFERENCES units (unit_id)
 );
+
+INSERT INTO categories (name)
+VALUES
+('Cupboard'), ('Fridge'), ('Freezer');
+
+INSERT INTO brands (name)
+VALUES
+('Sainsbury''s'), ('Tesco'), ('M & S'), ('Aldi');
+
+INSERT INTO units (name)
+VALUES
+('g'), ('piece'), ('kg'), ('bag'), ('ml'), ('l');
+
+INSERT INTO items (name, qty, unit_id, category_id, brand_id)
+VALUES
+('flour', 700, 1, 1, 4),
+('prawns', 1, 4, 3, 1),
+('apples', 10, 2, 2, 2),
+('potatoes', 2.5, 3, 1, 3);
 `;
+
+// use this script to test the app when the database is empty
 
 // const SQL = `
 // CREATE TABLE IF NOT EXISTS categories (
@@ -58,24 +79,9 @@ CREATE TABLE IF NOT EXISTS items (
 //   FOREIGN KEY (unit_id) REFERENCES units (unit_id)
 // );
 
-// INSERT INTO categories (name)
-// VALUES
-// ('Cupboard'), ('Fridge'), ('Freezer');
-
-// INSERT INTO brands (name)
-// VALUES
-// ('Sainsbury''s'), ('Tesco'), ('M & S'), ('Aldi');
-
 // INSERT INTO units (name)
 // VALUES
 // ('g'), ('piece'), ('kg'), ('bag'), ('ml'), ('l');
-
-// INSERT INTO items (name, qty, unit_id, category_id, brand_id)
-// VALUES
-// ('flour', 700, 1, 1, 4),
-// ('prawns', 1, 4, 3, 1),
-// ('apples', 10, 2, 2, 2),
-// ('potatoes', 2.5, 3, 1, 3);
 // `;
 
 async function main() {
