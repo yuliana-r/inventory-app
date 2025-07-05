@@ -47,13 +47,21 @@ exports.getBrandById = async (req, res) => {
 };
 
 // GET /brands/:brandId/update
-exports.showUpdateBrandForm = (req, res) => {
-  res.send('render Update Brand form here');
+exports.showUpdateBrandForm = async (req, res) => {
+  const { brandId } = req.params;
+
+  const brand = await db.getBrandById(brandId);
+
+  res.render('brand_form', { title: 'update brand', brand });
 };
 
 // POST /brands/:brandId/update
 exports.updateBrand = async (req, res) => {
-  res.send('updating brand here');
+  const { brandId } = req.params;
+
+  const { brandName } = req.body;
+  await db.updateBrand(brandId, brandName);
+  res.redirect(`/brands/${brandId}`);
 };
 
 // GET /brands/:brandId/delete

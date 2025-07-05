@@ -1,7 +1,7 @@
 const pool = require('../pool');
 
 async function getAllBrands() {
-  const { rows } = await pool.query('SELECT * FROM brands');
+  const { rows } = await pool.query('SELECT * FROM brands ORDER BY brand_id');
   return rows;
 }
 
@@ -36,7 +36,9 @@ async function insertBrand(name) {
   await pool.query(`INSERT INTO brands (name) VALUES ($1)`, [name]);
 }
 
-async function updateBrand(id, name) {}
+async function updateBrand(id, name) {
+  await pool.query(`UPDATE brands SET name = $1 WHERE brand_id = $2`, [name, id]);
+}
 
 async function deleteBrand(id) {
   await pool.query('DELETE FROM brands WHERE brand_id = $1', [id]);
