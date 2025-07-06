@@ -65,8 +65,12 @@ exports.updateBrand = async (req, res) => {
 };
 
 // GET /brands/:brandId/delete
-exports.showDeleteBrandForm = (req, res) => {
-  res.send('render Delete Brand form here');
+exports.showDeleteBrandConfirm = async (req, res) => {
+  const { brandId } = req.params;
+  const brand = await db.getBrandById(brandId);
+  if (!brand) return res.status(404).send('Brand not found');
+
+  res.render('brand_confirm_delete', { title: 'delete brand?', brand });
 };
 
 // POST /brands/:brandId/delete

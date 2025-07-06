@@ -64,6 +64,15 @@ exports.updateCategory = async (req, res) => {
   res.redirect(`/categories/${categoryId}`);
 };
 
+// GET /categories/:categoryId/delete
+exports.showDeleteCategoryConfirm = async (req, res) => {
+  const { categoryId } = req.params;
+  const category = await db.getCategoryById(categoryId);
+  if (!category) return res.status(404).send('Categort not found');
+
+  res.render('category_confirm_delete', { title: 'delete category?', category });
+};
+
 // POST /categories/:categoryId/delete
 exports.deleteCategory = async (req, res) => {
   const { categoryId } = req.params;

@@ -41,6 +41,7 @@ async function updateBrand(id, name) {
 }
 
 async function deleteBrand(id) {
+  await pool.query('DELETE FROM items WHERE brand_id = $1', [id]);
   await pool.query('DELETE FROM brands WHERE brand_id = $1', [id]);
 }
 

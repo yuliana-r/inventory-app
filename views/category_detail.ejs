@@ -10,7 +10,7 @@
   <p><%= category.name %></p>
 
   <a href=<%= `/categories/${category.category_id}/update` %>><button>edit</button></a>
-  <a href=<%= `/brands/${category.category_id}/delete` %>><button>delete</button></a>
+  <a href="/categories/<%= category.category_id %>/delete-confirm">Delete category</a>
 
   <!-- display all items of this category -->
 

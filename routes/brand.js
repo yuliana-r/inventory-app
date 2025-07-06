@@ -8,7 +8,7 @@ brandsRouter.post('/new', brandController.createBrand);
 brandsRouter.get('/:brandId', brandController.getBrandById);
 brandsRouter.get('/:brandId/update', brandController.showUpdateBrandForm);
 brandsRouter.post('/:brandId/update', brandController.updateBrand);
-brandsRouter.get('/:brandId/delete', brandController.showDeleteBrandForm);
+brandsRouter.get('/:brandId/delete-confirm', brandController.showDeleteBrandConfirm);
 brandsRouter.post('/:brandId/delete', brandController.deleteBrand);
 
 module.exports = brandsRouter;

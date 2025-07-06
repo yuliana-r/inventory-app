@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('./partials/head') %>
+
+<body>
+  <%- include('./partials/header') %>
+
+  <h2>Confirm Deletion</h2>
+  <p>Are you sure you want to delete the category "<%= category.name %>"?</p>
+  <p>This will also delete all associated items.</p>
+
+  <form action="/categories/<%= category.category_id %>/delete" method="POST">
+    <button type="submit">Yes, Delete</button>
+  </form>
+
+  <a href="/categories">Cancel</a>
+
+  <%- include('./partials/footer') %>
+</body>
+
+</html>
