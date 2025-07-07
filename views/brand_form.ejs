@@ -8,16 +8,17 @@
   <%- include('./partials/navbar') %>
   <p><%= title %></p>
 
-  <form action="<%= isUpdate ? `/brands/${brand.brand_id}/update` : '/brands/new' %>" method="POST">
+  <form action="<%= isUpdate && brand?.brand_id ? `/brands/${brand.brand_id}/update` : '/brands/new' %>" method="POST">
 
     <label for="name">Brand name</label>
-    <input type="text" id="name" name="brandName" placeholder="Waitrose" value="<%= (brand === undefined ? '' : brand.name) %>">
+    <input type="text" id="name" name="brandName" placeholder="Waitrose" value="<%= brand?.name || '' %>">
 
     <button type="submit"><%= isUpdate ? 'update brand' : 'add brand' %></button>
   </form>
   <% if (typeof errorMessage !== 'undefined') { %>
-  <p style="color: red;"><%= errorMessage %></p>
+  <p><%= errorMessage %></p>
   <% } %>
+  <%- include('./partials/validation_errors') %>
   <%- include('./partials/footer') %>
 </body>
 

@@ -43,7 +43,7 @@ exports.createCategory = [
     if (!errors.isEmpty()) {
       return res.status(400).render('category_form', {
         title: 'new category',
-        category: { name: '' },
+        category: { name: categoryName },
         errors: errors.array(),
         data: req.body,
         isUpdate: false,

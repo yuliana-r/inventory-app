@@ -43,9 +43,8 @@ exports.createBrand = [
     if (!errors.isEmpty()) {
       return res.status(400).render('brand_form', {
         title: 'new brand',
-        category: { name: '' },
+        brand: { name: brandName },
         errors: errors.array(),
-        data: req.body,
         isUpdate: false,
       });
     }
@@ -100,13 +99,13 @@ exports.updateBrand = [
   async (req, res) => {
     const { brandId } = req.params;
     const { brandName } = req.body;
+    const errors = validationResult(req);
 
     if (!errors.isEmpty()) {
       return res.status(400).render('brand_form', {
         title: 'update brand',
-        brand: { brand_id: brand_id, name: brandName },
+        brand: { brand_id: brandId, name: brandName },
         errors: errors.array(),
-        data: req.body,
         isUpdate: true,
       });
     }
@@ -114,6 +113,14 @@ exports.updateBrand = [
       await db.updateBrand(brandId, brandName);
       res.redirect(`/brands/${brandId}`);
     } catch (error) {
+      if (error.code === '23505') {
+        return res.status(400).render('brand_form', {
+          title: 'update brand',
+          brand: { brand_id: brandId, name: brandName },
+          errorMessage: 'The brand already exists',
+          isUpdate: true,
+        });
+      }
       handleServerError(res, error);
     }
   },
