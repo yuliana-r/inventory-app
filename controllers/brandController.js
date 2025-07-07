@@ -17,7 +17,12 @@ exports.getAllBrands = async (req, res) => {
 
 // GET /brands/new
 exports.showNewBrandForm = (req, res) => {
-  res.render('brand_form', { title: 'new brand', brand: undefined });
+  res.render('brand_form', {
+    title: 'new brand',
+    brand: { name: '' },
+    isUpdate: false,
+    errorMessage: null,
+  });
 };
 
 // POST /brands/new
@@ -27,6 +32,15 @@ exports.createBrand = async (req, res) => {
     await db.insertBrand(brandName);
     res.redirect('/brands');
   } catch (error) {
+    if (error.code === '23505') {
+      // unique constraint violation
+      return res.status(400).render('brand_form', {
+        title: 'new brand',
+        brand: { name: brandName },
+        errorMessage: 'The brand already exists',
+        isUpdate: false,
+      });
+    }
     handleServerError(res, error);
   }
 };
@@ -51,7 +65,7 @@ exports.showUpdateBrandForm = async (req, res) => {
   try {
     const { brandId } = req.params;
     const brand = await db.getBrandById(brandId);
-    res.render('brand_form', { title: 'update brand', brand });
+    res.render('brand_form', { title: 'update brand', brand, isUpdate: true });
   } catch (error) {
     handleServerError(res, error);
   }
