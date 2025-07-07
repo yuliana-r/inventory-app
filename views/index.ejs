@@ -9,6 +9,24 @@
   <%- include('./partials/navbar') %>
   <p>some info about the website</p>
   <p>Pantry at a glance - total items, total categories, total brands, total amount of food per unit</p>
+  <p><%= totalCategories %> categories</p>
+  <p><%= totalItems %> items</p>
+  <p><%= totalBrands %> brands</p>
+  <p><%= totalPieces %> pieces</p>
+  <p><%= totalBags %> bags</p>
+
+  <% if (totalWeight < 1) {%>
+  <p><%= totalWeight * 1000 %> grams</p>
+  <%} else{ %>
+  <p><%= totalWeight %> kilograms</p>
+  <% } %>
+
+  <% if (totalVolume < 1) {%>
+  <p><%= totalVolume * 1000 %> ml</p>
+  <%} else{ %>
+  <p><%= totalVolume %> litres</p>
+  <% } %>
+
   <%- include('./partials/footer') %>
 </body>
 

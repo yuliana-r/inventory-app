@@ -15,7 +15,10 @@
 
 
   <a href="/items/<%= item.item_id %>/update"><button>edit</button></a>
-  <a href="/items/<%= item.item_id %>/delete">delete</a>
+
+  <form action="/items/<%= item.item_id %>/delete" method="POST">
+    <button type="submit">delete</button>
+  </form>
 
   <%- include('./partials/footer') %>
 </body>
