@@ -17,7 +17,12 @@ exports.getAllCategories = async (req, res) => {
 
 // GET /categories/new
 exports.showNewCategoryForm = (req, res) => {
-  res.render('category_form', { title: 'new category', category: undefined });
+  res.render('category_form', {
+    title: 'new category',
+    category: { name: '' },
+    isUpdate: false,
+    errorMessage: null,
+  });
 };
 
 // POST /categories/new
@@ -27,6 +32,14 @@ exports.createCategory = async (req, res) => {
     await db.insertCategory(categoryName);
     res.redirect('/categories');
   } catch (error) {
+    if (error.code === '23505') {
+      return res.status(400).render('category_form', {
+        title: 'new category',
+        category: { name: categoryName },
+        errorMessage: 'The category already exists',
+        isUpdate: false,
+      });
+    }
     handleServerError(res, error);
   }
 };
@@ -51,7 +64,7 @@ exports.showUpdateCategoryForm = async (req, res) => {
   try {
     const { categoryId } = req.params;
     const category = await db.getCategoryById(categoryId);
-    res.render('category_form', { title: 'update category', category });
+    res.render('category_form', { title: 'update category', category, isUpdate: true });
   } catch (error) {
     handleServerError(res, error);
   }
