@@ -1,4 +1,12 @@
 const db = require('../db/queries/brand_queries');
+const { body, validationResult } = require('express-validator');
+
+const validateBrand = [
+  body('brandName')
+    .trim()
+    .isLength({ min: 1, max: 20 })
+    .withMessage('Brand name must be between 1 and 20 characters.'),
+];
 
 function handleServerError(res, error, message = 'Internal Server Error') {
   console.error(message, error);
@@ -26,24 +34,39 @@ exports.showNewBrandForm = (req, res) => {
 };
 
 // POST /brands/new
-exports.createBrand = async (req, res) => {
-  const { brandName } = req.body;
-  try {
-    await db.insertBrand(brandName);
-    res.redirect('/brands');
-  } catch (error) {
-    if (error.code === '23505') {
-      // unique constraint violation
+exports.createBrand = [
+  validateBrand,
+  async (req, res) => {
+    const { brandName } = req.body;
+    const errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
       return res.status(400).render('brand_form', {
         title: 'new brand',
-        brand: { name: brandName },
-        errorMessage: 'The brand already exists',
+        category: { name: '' },
+        errors: errors.array(),
+        data: req.body,
         isUpdate: false,
       });
     }
-    handleServerError(res, error);
-  }
-};
+
+    try {
+      await db.insertBrand(brandName);
+      res.redirect('/brands');
+    } catch (error) {
+      if (error.code === '23505') {
+        // unique constraint violation
+        return res.status(400).render('brand_form', {
+          title: 'new brand',
+          brand: { name: brandName },
+          errorMessage: 'The brand already exists',
+          isUpdate: false,
+        });
+      }
+      handleServerError(res, error);
+    }
+  },
+];
 
 // GET /brands/:brandId
 exports.getBrandById = async (req, res) => {
@@ -72,16 +95,29 @@ exports.showUpdateBrandForm = async (req, res) => {
 };
 
 // POST /brands/:brandId/update
-exports.updateBrand = async (req, res) => {
-  try {
+exports.updateBrand = [
+  validateBrand,
+  async (req, res) => {
     const { brandId } = req.params;
     const { brandName } = req.body;
-    await db.updateBrand(brandId, brandName);
-    res.redirect(`/brands/${brandId}`);
-  } catch (error) {
-    handleServerError(res, error);
-  }
-};
+
+    if (!errors.isEmpty()) {
+      return res.status(400).render('brand_form', {
+        title: 'update brand',
+        brand: { brand_id: brand_id, name: brandName },
+        errors: errors.array(),
+        data: req.body,
+        isUpdate: true,
+      });
+    }
+    try {
+      await db.updateBrand(brandId, brandName);
+      res.redirect(`/brands/${brandId}`);
+    } catch (error) {
+      handleServerError(res, error);
+    }
+  },
+];
 
 // GET /brands/:brandId/delete
 exports.showDeleteBrandConfirm = async (req, res) => {

@@ -100,17 +100,17 @@ exports.updateCategory = [
     const { categoryId } = req.params;
     const { categoryName } = req.body;
     const errors = validationResult(req);
-    try {
-      if (!errors.isEmpty()) {
-        return res.status(400).render('category_form', {
-          title: 'update category',
-          category: { category_id: categoryId, name: categoryName },
-          errors: errors.array(),
-          data: req.body,
-          isUpdate: true,
-        });
-      }
 
+    if (!errors.isEmpty()) {
+      return res.status(400).render('category_form', {
+        title: 'update category',
+        category: { category_id: categoryId, name: categoryName },
+        errors: errors.array(),
+        data: req.body,
+        isUpdate: true,
+      });
+    }
+    try {
       await db.updateCategory(categoryId, categoryName);
       res.redirect(`/categories/${categoryId}`);
     } catch (error) {
