@@ -8,16 +8,17 @@
   <%- include('./partials/navbar') %>
   <p><%= title %></p>
 
-  <form action="<%= isUpdate ? `/categories/${category.category_id}/update` : '/categories/new' %>" method="POST">
+  <form action="<%= isUpdate && category?.category_id ? `/categories/${category.category_id}/update` : '/categories/new' %>" method="POST">
 
     <label for="name">Category name</label>
-    <input type="text" id="name" name="categoryName" placeholder="Miscellaneous" value="<%= (category === undefined ? '' : category.name) %>">
+    <input type="text" id="name" name="categoryName" placeholder="Miscellaneous" value="<%= category?.name || '' %>">
 
     <button type="submit"><%= isUpdate ? 'update category' : 'add category' %></button>
   </form>
   <% if (typeof errorMessage !== 'undefined') { %>
-  <p style="color: red;"><%= errorMessage %></p>
+  <p><%= errorMessage %></p>
   <% } %>
+  <%- include('./partials/validation_errors') %>
   <%- include('./partials/footer') %>
 </body>
 

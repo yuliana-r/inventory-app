@@ -1,4 +1,12 @@
 const db = require('../db/queries/category_queries');
+const { body, validationResult } = require('express-validator');
+
+const validateCategory = [
+  body('categoryName')
+    .trim()
+    .isLength({ min: 1, max: 20 })
+    .withMessage('Category name must be between 1 and 20 characters.'),
+];
 
 function handleServerError(res, error, message = 'Internal Server Error') {
   console.error(message, error);
@@ -26,23 +34,38 @@ exports.showNewCategoryForm = (req, res) => {
 };
 
 // POST /categories/new
-exports.createCategory = async (req, res) => {
-  const { categoryName } = req.body;
-  try {
-    await db.insertCategory(categoryName);
-    res.redirect('/categories');
-  } catch (error) {
-    if (error.code === '23505') {
+exports.createCategory = [
+  validateCategory,
+  async (req, res) => {
+    const { categoryName } = req.body;
+    const errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
       return res.status(400).render('category_form', {
         title: 'new category',
-        category: { name: categoryName },
-        errorMessage: 'The category already exists',
+        category: { name: '' },
+        errors: errors.array(),
+        data: req.body,
         isUpdate: false,
       });
     }
-    handleServerError(res, error);
-  }
-};
+
+    try {
+      await db.insertCategory(categoryName);
+      res.redirect('/categories');
+    } catch (error) {
+      if (error.code === '23505') {
+        return res.status(400).render('category_form', {
+          title: 'new category',
+          category: { name: categoryName },
+          errorMessage: 'The category already exists',
+          isUpdate: false,
+        });
+      }
+      handleServerError(res, error);
+    }
+  },
+];
 
 // GET /categories/:categoryId
 exports.getCategoryById = async (req, res) => {
@@ -71,23 +94,45 @@ exports.showUpdateCategoryForm = async (req, res) => {
 };
 
 // POST /categories/:categoryId/update
-exports.updateCategory = async (req, res) => {
-  try {
+exports.updateCategory = [
+  validateCategory,
+  async (req, res) => {
     const { categoryId } = req.params;
     const { categoryName } = req.body;
-    await db.updateCategory(categoryId, categoryName);
-    res.redirect(`/categories/${categoryId}`);
-  } catch (error) {
-    handleServerError(res, error);
-  }
-};
+    const errors = validationResult(req);
+    try {
+      if (!errors.isEmpty()) {
+        return res.status(400).render('category_form', {
+          title: 'update category',
+          category: { category_id: categoryId, name: categoryName },
+          errors: errors.array(),
+          data: req.body,
+          isUpdate: true,
+        });
+      }
+
+      await db.updateCategory(categoryId, categoryName);
+      res.redirect(`/categories/${categoryId}`);
+    } catch (error) {
+      if (error.code === '23505') {
+        return res.status(400).render('category_form', {
+          title: 'update category',
+          category: { category_id: categoryId, name: categoryName },
+          errorMessage: 'The category already exists',
+          isUpdate: true,
+        });
+      }
+      handleServerError(res, error);
+    }
+  },
+];
 
 // GET /categories/:categoryId/delete
 exports.showDeleteCategoryConfirm = async (req, res) => {
   const { categoryId } = req.params;
   try {
     const category = await db.getCategoryById(categoryId);
-    if (!category) return res.status(404).send('Categort not found');
+    if (!category) return res.status(404).send('Category not found');
     res.render('category_confirm_delete', { title: 'delete category?', category });
   } catch (error) {
     handleServerError(res, error);
