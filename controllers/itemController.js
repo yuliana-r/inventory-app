@@ -66,12 +66,10 @@ exports.getItemById = async (req, res) => {
 exports.showUpdateItemForm = async (req, res) => {
   try {
     const { itemId } = req.params;
-
     const item = await db.getItemById(itemId);
     const units = await unit_db.getAllUnits();
     const categories = await category_db.getAllCategories();
     const brands = await brand_db.getAllBrands();
-
     res.render('item_form', { title: 'update item', item, units, categories, brands });
   } catch (error) {
     handleServerError(res, error);
@@ -81,11 +79,14 @@ exports.showUpdateItemForm = async (req, res) => {
 // POST /items/:itemId/update
 exports.updateItem = async (req, res) => {
   const { itemId } = req.params;
-
   const { name, qty, unit_id, category_id, brand_id } = req.body;
 
-  await db.updateItem(itemId, name, qty, unit_id, category_id, brand_id);
-  res.redirect(`/items/${itemId}`);
+  try {
+    await db.updateItem(itemId, name, qty, unit_id, category_id, brand_id);
+    res.redirect(`/items/${itemId}`);
+  } catch (error) {
+    handleServerError(res, error);
+  }
 };
 
 // POST /items/:itemId/delete

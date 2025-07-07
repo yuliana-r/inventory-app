@@ -12,7 +12,7 @@
   </a>
   <% if (items_list.length > 0) { %>
   <% items_list.forEach(function(item) {%>
-  <a href=<%= `/items/${item.item_id}` %>><%= item.item_name %></a>
+  <a href="/items/<%= item.item_id %>"><%= item.item_name %></a>
   <p><%= item.qty %></p>
   <p><%= item.unit_name %></p>
   <p><%= item.category_name %></p>

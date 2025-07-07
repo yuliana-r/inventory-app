@@ -48,20 +48,25 @@ exports.getBrandById = async (req, res) => {
 
 // GET /brands/:brandId/update
 exports.showUpdateBrandForm = async (req, res) => {
-  const { brandId } = req.params;
-
-  const brand = await db.getBrandById(brandId);
-
-  res.render('brand_form', { title: 'update brand', brand });
+  try {
+    const { brandId } = req.params;
+    const brand = await db.getBrandById(brandId);
+    res.render('brand_form', { title: 'update brand', brand });
+  } catch (error) {
+    handleServerError(res, error);
+  }
 };
 
 // POST /brands/:brandId/update
 exports.updateBrand = async (req, res) => {
-  const { brandId } = req.params;
-
-  const { brandName } = req.body;
-  await db.updateBrand(brandId, brandName);
-  res.redirect(`/brands/${brandId}`);
+  try {
+    const { brandId } = req.params;
+    const { brandName } = req.body;
+    await db.updateBrand(brandId, brandName);
+    res.redirect(`/brands/${brandId}`);
+  } catch (error) {
+    handleServerError(res, error);
+  }
 };
 
 // GET /brands/:brandId/delete

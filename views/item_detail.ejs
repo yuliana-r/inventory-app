@@ -14,7 +14,7 @@
   <p><%= item.brand_name %></p>
 
 
-  <a href=<%= `/items/${item.item_id}/update` %>><button>edit</button></a>
+  <a href="/items/<%= item.item_id %>/update" <button>edit</button></a>
   <form action="/items/<%= item.item_id %>/delete" method="POST">
     <button type="submit">delete</button>
   </form>

@@ -9,14 +9,14 @@
 
   <p><%= category.name %></p>
 
-  <a href=<%= `/categories/${category.category_id}/update` %>><button>edit</button></a>
+  <a href="/categories/<%= category.category_id %>/update"><button>edit</button></a>
   <a href="/categories/<%= category.category_id %>/delete-confirm">Delete category</a>
 
   <!-- display all items of this category -->
 
   <% if (itemsInCategory.length > 0) { %>
   <% itemsInCategory.forEach(function(item) {%>
-  <a href=<%= `/items/${item.item_id}` %>><%= item.item_name %></a>
+  <a href="/items/<%= item.item_id %>"><%= item.item_name %></a>
   <p><%= item.qty %></p>
   <p><%= item.unit_name %></p>
   <p><%= item.category_name %></p>

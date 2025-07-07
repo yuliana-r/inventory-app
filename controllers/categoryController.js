@@ -48,29 +48,37 @@ exports.getCategoryById = async (req, res) => {
 
 // GET /categories/:categoryId/update
 exports.showUpdateCategoryForm = async (req, res) => {
-  const { categoryId } = req.params;
-
-  const category = await db.getCategoryById(categoryId);
-
-  res.render('category_form', { title: 'update category', category });
+  try {
+    const { categoryId } = req.params;
+    const category = await db.getCategoryById(categoryId);
+    res.render('category_form', { title: 'update category', category });
+  } catch (error) {
+    handleServerError(res, error);
+  }
 };
 
 // POST /categories/:categoryId/update
 exports.updateCategory = async (req, res) => {
-  const { categoryId } = req.params;
-
-  const { categoryName } = req.body;
-  await db.updateCategory(categoryId, categoryName);
-  res.redirect(`/categories/${categoryId}`);
+  try {
+    const { categoryId } = req.params;
+    const { categoryName } = req.body;
+    await db.updateCategory(categoryId, categoryName);
+    res.redirect(`/categories/${categoryId}`);
+  } catch (error) {
+    handleServerError(res, error);
+  }
 };
 
 // GET /categories/:categoryId/delete
 exports.showDeleteCategoryConfirm = async (req, res) => {
   const { categoryId } = req.params;
-  const category = await db.getCategoryById(categoryId);
-  if (!category) return res.status(404).send('Categort not found');
-
-  res.render('category_confirm_delete', { title: 'delete category?', category });
+  try {
+    const category = await db.getCategoryById(categoryId);
+    if (!category) return res.status(404).send('Categort not found');
+    res.render('category_confirm_delete', { title: 'delete category?', category });
+  } catch (error) {
+    handleServerError(res, error);
+  }
 };
 
 // POST /categories/:categoryId/delete

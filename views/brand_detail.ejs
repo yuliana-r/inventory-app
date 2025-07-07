@@ -8,15 +8,14 @@
   <%- include('./partials/navbar') %>
   <p><%= brand.name %></p>
 
-  <a href=<%= `/brands/${brand.brand_id}/update` %>><button>edit</button></a>
-  <!-- <a href=<%= `/brands/${brand.brand_id}/delete` %>><button>delete</button></a> -->
+  <a href="/brands/<%= brand.brand_id %>/update"><button>edit</button></a>
   <a href="/brands/<%= brand.brand_id %>/delete-confirm">Delete Brand</a>
 
   <!-- display all items of this brand -->
 
   <% if (itemsOfBrand.length > 0) { %>
   <% itemsOfBrand.forEach(function(item) {%>
-  <a href=<%= `/items/${item.item_id}` %>><%= item.item_name %></a>
+  <a href="/items/<%= item.item_id %>"><%= item.item_name %></a>
   <p><%= item.qty %></p>
   <p><%= item.unit_name %></p>
   <p><%= item.category_name %></p>
