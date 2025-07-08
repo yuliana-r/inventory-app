@@ -5,7 +5,6 @@
 
 <body>
   <%- include('./partials/header') %>
-  <%- include('./partials/navbar') %>
   <p><%= title %></p>
 
   <form action="<%= isUpdate && category?.category_id ? `/categories/${category.category_id}/update` : '/categories/new' %>" method="POST">

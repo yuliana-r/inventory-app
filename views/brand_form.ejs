@@ -5,7 +5,6 @@
 
 <body>
   <%- include('./partials/header') %>
-  <%- include('./partials/navbar') %>
   <p><%= title %></p>
 
   <form action="<%= isUpdate && brand?.brand_id ? `/brands/${brand.brand_id}/update` : '/brands/new' %>" method="POST">
