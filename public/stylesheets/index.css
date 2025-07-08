@@ -9,9 +9,11 @@
 }
 
 :root {
-  --primary-dark: #414e3d;
-  --primary-light: #f6f5f1;
-  --primary-red: #7d4446;
+  --primary-dark: #689262;
+  --primary-light: #f7f8f8;
+  --primary-red: #c24028;
+  --coral: #e67f4e;
+  --light-green: #bdc992;
 }
 
 html {
@@ -111,9 +113,24 @@ footer {
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: var(--primary-dark);
+  user-select: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 0.75em;
+  font-family: 'Special Elite', serif;
+  font-size: 20px;
+  gap: 0.4em;
+  letter-spacing: 2px;
+  color: var(--primary-light);
+  width: 100%;
 }
 
 .fa-github {
+  font-size: 1em;
+  color: var(--primary-light);
   transition: transform 0.3s ease-in-out;
 }
 
