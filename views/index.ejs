@@ -6,25 +6,58 @@
 
 <body>
   <%- include('./partials/header') %>
-  <p>some info about the website</p>
-  <p>Your pantry at a glance:</p>
-  <p><%= totalCategories %> categories</p>
-  <p><%= totalItems %> items</p>
-  <p><%= totalBrands %> brands</p>
-  <p><%= totalPieces %> pieces</p>
-  <p><%= totalBags %> bags</p>
+  <p class="info">shelf-aware helps you keep track of what you have at home—from pantry staples to
+    cleaning supplies and pet food. See what's in stock, use what yo've got,
+    and make home life a little easier. </p>
 
-  <% if (totalWeight < 1) {%>
-  <p><%= totalWeight * 1000 %> grams</p>
-  <%} else{ %>
-  <p><%= totalWeight %> kilograms</p>
-  <% } %>
+  <p class="info">Your pantry at a glance:</p>
+  <div class="pantry-summary">
+    <div class="item-summary">
+      <p class="entity-total"><%= totalCategories %></p>
+      <p class="entity-name">categories</p>
+    </div>
+    <div class="item-summary">
+      <p class="entity-total"><%= totalItems %></p>
+      <p class="entity-name">items</p>
+    </div>
+    <div class="item-summary">
+      <p class="entity-total"><%= totalBrands %></p>
+      <p class="entity-name">brands</p>
+    </div>
+    <div class="item-summary">
+      <p class="entity-total"><%= totalPieces %></p>
+      <p class="entity-name">pieces</p>
+    </div>
+    <div class="item-summary">
+      <p class="entity-total"><%= totalBags %></p>
+      <p class="entity-name">bags</p>
+    </div>
 
-  <% if (totalVolume < 1) {%>
-  <p><%= totalVolume * 1000 %> ml</p>
-  <%} else{ %>
-  <p><%= totalVolume %> litres</p>
-  <% } %>
+    <% if (totalWeight < 1) {%>
+    <div class="item-summary">
+      <p class="entity-total"><%= totalWeight * 1000 %></p>
+      <p class="entity-name">grams</p>
+    </div>
+    <%} else{ %>
+    <div class="item-summary">
+      <p class="entity-total"><%= totalWeight %></p>
+      <p class="entity-name">kilograms</p>
+    </div>
+    <% } %>
+
+    <% if (totalVolume < 1) {%>
+    <div class="item-summary">
+      <p class="entity-total"><%= totalVolume * 1000 %></p>
+      <p class="entity-name">ml</p>
+    </div>
+    <%} else{ %>
+    <div class="item-summary">
+      <p class="entity-total"><%= totalVolume %></p>
+      <p class="entity-name">litres</p>
+    </div>
+    <% } %>
+  </div>
+
 
   <%- include('./partials/footer') %>
 </body>

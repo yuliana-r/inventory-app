@@ -9,11 +9,11 @@
 }
 
 :root {
+  --primary-black: #2c2c2c;
   --primary-dark: #689262;
   --primary-light: #f7f8f8;
   --primary-red: #c24028;
   --coral: #e67f4e;
-  --light-green: #bdc992;
 }
 
 html {
@@ -26,7 +26,7 @@ body {
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  background-color: val(--primary-light);
+  background-color: var(--primary-light);
 }
 
 /* Header */
@@ -42,8 +42,9 @@ header {
   background-repeat: repeat;
   width: 100%;
   height: 12em;
-  border-bottom: 1px solid var(--primary-dark);
+  border-bottom: 1px solid var(--primary-black);
   color: var(--primary-light);
+  margin-bottom: 1em;
 }
 
 .logo {
@@ -52,7 +53,7 @@ header {
   margin: 0.25em;
   font-weight: 600;
   letter-spacing: 2px;
-  background-color: var(--primary-dark);
+  background-color: var(--primary-black);
   padding: 0.2em;
   transform: rotate(-1deg);
 }
@@ -72,7 +73,7 @@ header {
   letter-spacing: 2px;
   font-size: 1rem;
   font-weight: 400;
-  background-color: var(--primary-dark);
+  background-color: var(--primary-black);
   transform: rotate(1deg);
 }
 
@@ -92,12 +93,12 @@ nav {
 .nav-link {
   text-decoration: none;
   background-color: var(--primary-light);
-  color: var(--primary-dark);
+  color: var(--primary-black);
   font-family: 'Montserrat', sans-serif;
   font-weight: 600;
   font-size: 1rem;
   letter-spacing: 2px;
-  border: 1px solid var(--primary-dark);
+  border: 1px solid var(--primary-black);
   padding: 0.5em;
   transform: rotate(-3deg);
   transition: transform 0.3s ease-in-out;
@@ -107,18 +108,60 @@ nav {
   transform: scale(1.05);
 }
 
+/* Index */
+
+.info {
+  font-family: 'Special Elite', monospace;
+  width: 60%;
+  line-height: 1.3;
+  text-align: center;
+  font-size: 1.5em;
+  padding: 1em;
+}
+
+.pantry-summary {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  width: 60%;
+}
+
+.item-summary {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 10em;
+  height: 10em;
+  margin: 1em;
+  border: 2px solid var(--primary-black);
+  border-radius: 5px;
+  color: var(--primary-light);
+  background-color: var(--primary-dark);
+  font-family: 'Special Elite', monospace;
+  padding: 1em;
+}
+
+.entity-total {
+  font-size: 2.5em;
+  padding: 0.3em 0.1em;
+  font-weight: 600;
+}
+
+.entity-name {
+  align-self: flex-end;
+  font-size: 1.5em;
+  color: var(--primary-black);
+}
+
 /* Footer */
 
 footer {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: var(--primary-dark);
+  background-color: var(--primary-black);
   user-select: none;
-  display: flex;
   flex-direction: row;
-  justify-content: center;
-  align-items: center;
   padding: 0.75em;
   font-family: 'Special Elite', serif;
   font-size: 20px;
