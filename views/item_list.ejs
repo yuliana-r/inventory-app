@@ -6,8 +6,8 @@
 <body>
   <%- include('./partials/header') %>
 
-  <a href="/items/new">
-    <button>new item</button>
+  <a href="/items/new" class="new-btn">
+    new item
   </a>
   <% if (items_list.length > 0) { %>
   <% items_list.forEach(function(item) {%>

@@ -5,19 +5,19 @@
 
 <body>
   <%- include('./partials/header') %>
-
+  <a href="/categories/new" class="new-btn">
+    new category
+  </a>
 
   <% if (categories_list.length > 0) { %>
   <% categories_list.forEach(function(category) {%>
-  <a href="/categories/<%= category.category_id %>"><%= category.name %></a>
+  <a href="/categories/<%= category.category_id %>" class="category-link"><%= category.name %></a>
   <%}); %>
   <% } else { %>
   <p>There are no categories to display yet. Why don't you create one <a href="/categories/new">here</a>?</p>
   <% } %>
 
-  <a href="/categories/new">
-    <button>new category</button>
-  </a>
+
   <%- include('./partials/footer') %>
 </body>
 
