@@ -81,7 +81,7 @@ exports.getItemById = async (req, res) => {
   const { itemId } = req.params;
   const item = await db.getItemById(itemId);
   if (!item) {
-    return res.status(404).send('Item not found');
+    return res.status(404).render('404', { title: 'Item not found' });
   }
   try {
     res.render('item_detail', { title: 'item details', item });

@@ -74,7 +74,7 @@ exports.getBrandById = async (req, res) => {
     const brand = await db.getBrandById(brandId);
     const itemsOfBrand = await db.getItemByBrand(brandId);
     if (!brand) {
-      return res.status(404).send('Brand not found');
+      return res.status(404).render('404', { title: 'Brand not found' });
     }
     res.render('brand_detail', { title: 'brand detail', brand, itemsOfBrand });
   } catch (error) {
@@ -130,7 +130,7 @@ exports.updateBrand = [
 exports.showDeleteBrandConfirm = async (req, res) => {
   const { brandId } = req.params;
   const brand = await db.getBrandById(brandId);
-  if (!brand) return res.status(404).send('Brand not found');
+  if (!brand) return res.status(404).render('404', { title: 'Brand not found' });
 
   res.render('brand_confirm_delete', { title: 'delete brand?', brand });
 };

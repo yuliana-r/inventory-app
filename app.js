@@ -23,6 +23,10 @@ app.use('/items', itemsRouter);
 app.use('/brands', brandsRouter);
 app.use('/categories', categoriesRouter);
 
+app.use((req, res, next) => {
+  res.status(404).render('404', { url: req.originalUrl, title: 'Page not found' });
+});
+
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
 });

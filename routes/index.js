@@ -1,7 +1,6 @@
 const { Router } = require('express');
 const indexRouter = Router();
 const db = require('../db/queries/index_queries');
-const { parse } = require('dotenv');
 
 indexRouter.get('/', async (req, res) => {
   const totalCategories = await db.getTotalCategories();
