@@ -13,7 +13,7 @@
   --primary-dark: #6d9b6c;
   --primary-light: #f7f8f8;
   --primary-red: #c24028;
-  --coral: #e67f4e;
+  --coral: #cf7246;
 }
 
 html {
@@ -133,7 +133,7 @@ nav {
   width: 10em;
   height: 10em;
   margin: 1em;
-  border: 2px solid var(--primary-black);
+  border: 1px solid var(--primary-black);
   border-radius: 5px;
   color: var(--primary-light);
   background-color: var(--primary-dark);
@@ -153,7 +153,7 @@ nav {
   color: var(--primary-black);
 }
 
-/* */
+/* Brands & Categories list */
 
 .new-btn {
   border: 1px solid var(--primary-black);
@@ -192,6 +192,68 @@ nav {
 .category-link:hover {
   transform: scale(1.05);
   color: var(--coral);
+}
+
+/* Items list */
+
+.items-list {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 1em;
+  width: 80%;
+}
+
+.item-container {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-direction: column;
+  border: 1px solid var(--primary-black);
+  border-radius: 5px;
+  margin: 0.5em;
+  width: 13em;
+  height: 13em;
+}
+
+.item-name {
+  word-wrap: break-word;
+  width: 80%;
+  padding: 0.25em;
+  text-decoration: none;
+  font-family: 'Special Elite', serif;
+  font-size: 1.3em;
+  color: var(--coral);
+  letter-spacing: 2px;
+  font-weight: bold;
+  display: inline-block;
+}
+
+.item-name:hover {
+  transform: scale(1.05);
+  text-decoration: underline;
+}
+
+.item-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5em;
+  font-size: 1em;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.item-qty {
+  font-weight: 600;
+}
+
+.item-unit {
+  font-style: italic;
+}
+.item-qty,
+.item-unit {
+  font-family: 'Montserrat', sans-serif;
 }
 
 /* Footer */

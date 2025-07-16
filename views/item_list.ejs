@@ -9,18 +9,26 @@
   <a href="/items/new" class="new-btn">
     new item
   </a>
-  <% if (items_list.length > 0) { %>
-  <% items_list.forEach(function(item) {%>
-  <a href="/items/<%= item.item_id %>"><%= item.item_name %></a>
-  <p><%= item.qty %></p>
-  <p><%= item.unit_name %></p>
-  <p><%= item.category_name %></p>
-  <p><%= item.brand_name %></p>
-  <%}); %>
+
+  <div class="items-list">
+    <% if (items_list.length > 0) { %>
+    <% items_list.forEach(function(item) {%>
+    <div class="item-container">
+      <a href="/items/<%= item.item_id %>" class="item-name"><%= item.item_name %></a>
+      <div class="item-header">
+        <p class="item-brand"><%= item.brand_name %> </p>
+        <p>·</p>
+        <p class="item-category"><%= item.category_name %></p>
+      </div>
+      <p class="item-qty"><%= item.qty %></p>
+      <p class="item-unit"><%= item.unit_name %></p>
+    </div>
+    <%}); %>
+
+  </div>
   <% } else { %>
   <p>There are no items to display yet. Why don't you create one <a href="/items/new">here</a>?</p>
   <% } %>
-
 
   <%- include('./partials/footer') %>
 </body>
