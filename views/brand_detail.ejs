@@ -5,21 +5,33 @@
 
 <body>
   <%- include('./partials/header') %>
-  <p><%= brand.name %></p>
+  <p class="info"><%= brand.name %></p>
 
-  <a href="/brands/<%= brand.brand_id %>/update"><button>edit</button></a>
-  <a href="/brands/<%= brand.brand_id %>/delete-confirm">Delete Brand</a>
+  <div class="buttons-container">
+    <a href="/brands/<%= brand.brand_id %>/update" class="edit-btn">edit</a>
+    <a href="/brands/<%= brand.brand_id %>/delete-confirm" class="delete-btn">delete</a>
+  </div>
 
   <!-- display all items of this brand -->
 
+
   <% if (itemsOfBrand.length > 0) { %>
-  <% itemsOfBrand.forEach(function(item) {%>
-  <a href="/items/<%= item.item_id %>"><%= item.item_name %></a>
-  <p><%= item.qty %></p>
-  <p><%= item.unit_name %></p>
-  <p><%= item.category_name %></p>
-  <p><%= item.brand_name %></p>
-  <%}); %>
+  <div class="items-list">
+    <% itemsOfBrand.forEach(function(item) {%>
+
+    <div class="item-container">
+      <a href="/items/<%= item.item_id %>" class="item-name"><%= item.item_name %></a>
+      <div class="item-header">
+        <p class="item-brand"><%= item.brand_name %> </p>
+        <p>·</p>
+        <p class="item-category"><%= item.category_name %></p>
+      </div>
+      <p class="item-qty"><%= item.qty %></p>
+      <p class="item-unit"><%= item.unit_name %></p>
+    </div>
+
+    <%}); %>
+  </div>
   <% } %>
 
 

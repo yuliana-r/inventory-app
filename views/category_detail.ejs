@@ -6,21 +6,29 @@
 <body>
   <%- include('./partials/header') %>
 
-  <p><%= category.name %></p>
-
-  <a href="/categories/<%= category.category_id %>/update"><button>edit</button></a>
-  <a href="/categories/<%= category.category_id %>/delete-confirm">Delete category</a>
+  <p class="info"><%= category.name %></p>
+  <div class="buttons-container">
+    <a href="/categories/<%= category.category_id %>/update" class="edit-btn">edit</a>
+    <a href="/categories/<%= category.category_id %>/delete-confirm" class="delete-btn">delete</a>
+  </div>
 
   <!-- display all items of this category -->
 
   <% if (itemsInCategory.length > 0) { %>
-  <% itemsInCategory.forEach(function(item) {%>
-  <a href="/items/<%= item.item_id %>"><%= item.item_name %></a>
-  <p><%= item.qty %></p>
-  <p><%= item.unit_name %></p>
-  <p><%= item.category_name %></p>
-  <p><%= item.brand_name %></p>
-  <%}); %>
+  <div class="items-list">
+    <% itemsInCategory.forEach(function(item) {%>
+    <div class="item-container">
+      <a href="/items/<%= item.item_id %>" class="item-name"><%= item.item_name %></a>
+      <div class="item-header">
+        <p class="item-brand"><%= item.brand_name %> </p>
+        <p>·</p>
+        <p class="item-category"><%= item.category_name %></p>
+      </div>
+      <p class="item-qty"><%= item.qty %></p>
+      <p class="item-unit"><%= item.unit_name %></p>
+    </div>
+    <%}); %>
+  </div>
   <% } %>
 
 

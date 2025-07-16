@@ -14,6 +14,7 @@
   --primary-light: #f7f8f8;
   --primary-red: #c24028;
   --coral: #cf7246;
+  --purple: #8e558a;
 }
 
 html {
@@ -290,6 +291,40 @@ select {
 .err-msg {
   font-family: 'Montserrat', sans-serif;
   color: var(--primary-red);
+}
+
+.buttons-container {
+  display: flex;
+  gap: 1em;
+  justify-content: center;
+  align-items: center;
+}
+
+.edit-btn {
+  background-color: var(--purple);
+}
+
+.delete-btn {
+  background-color: var(--primary-red);
+}
+
+.edit-btn,
+.delete-btn {
+  border: 1px solid var(--primary-black);
+  color: var(--primary-light);
+  font-size: 1.25em;
+  padding: 0.5em 1em;
+  text-decoration: none;
+  border-radius: 3px;
+  font-family: 'Special Elite', monospace;
+}
+
+.edit-btn:hover,
+.delete-btn:hover {
+  cursor: pointer;
+  background-color: var(--primary-light);
+  color: var(--primary-black);
+  border: 1px solid var(--primary-black);
 }
 
 /* Footer */
