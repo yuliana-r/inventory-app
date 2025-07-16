@@ -5,7 +5,7 @@
 
 <body>
   <%- include('./partials/header') %>
-  <p><%= title %></p>
+  <p class="info"><%= title %></p>
 
   <form action="<%= isUpdate && brand?.brand_id ? `/brands/${brand.brand_id}/update` : '/brands/new' %>" method="POST">
 
@@ -15,7 +15,7 @@
     <button type="submit"><%= isUpdate ? 'update brand' : 'add brand' %></button>
   </form>
   <% if (typeof errorMessage !== 'undefined') { %>
-  <p><%= errorMessage %></p>
+  <p class="err-msg"><%= errorMessage %></p>
   <% } %>
   <%- include('./partials/validation_errors') %>
   <%- include('./partials/footer') %>
